@@ -1,105 +1,41 @@
-Prompt -> LLM: {
-  style: {
-    animated: true
-    stroke: "#4A6FF3"
-    stroke-width: 2
-  }
-}
+direction: down
 
-LLM -> Answer: {
-  style: {
-    animated: true
-    stroke: "#4A6FF3"
-    stroke-width: 2
-  }
-}
+(** -> **)[*].style.stroke: "#4A6FF3"
+(** -> **)[*].style.stroke-width: 2
+(** -> **)[*].style.animated: true
 
-Answer -> RewardModel: {
-  style: {
-    animated: true
-    stroke: "#4A6FF3"
-    stroke-width: 2
-  }
-}
+
+
+Prompt -> LLM
+LLM -> Answer
+Answer -> RewardModel
 
 Prompt1: Prompt
 LLM1: LLM
 
-Prompt1 -> LLM1: {
-  style: {
-    animated: true
-    stroke: "#4A6FF3"
-    stroke-width: 2
-  }
-}
-
-LLM1 -> reasoning.Think: {
-  style: {
-    animated: true
-    stroke: "#4A6FF3"
-    stroke-width: 2
-  }
-}
+Prompt1 -> LLM1
+LLM1 -> reasoning.Think
 
 reasoning: {
   label: "Reasoning process"
   FirstResponse: First Response
-  FirstResponse <- Think: {
-    style: {
-      animated: true
-      stroke: "#4A6FF3"
-      stroke-width: 2
-    }
-  }
-
+  Think -> FirstResponse
   then: Then...
-
-  FirstResponse -> then: {
-    style: {
-      animated: true
-      stroke: "#4A6FF3"
-      stroke-width: 2
-    }
-  }
-
-  conclusion <- then: {
-    style: {
-      animated: true
-      stroke: "#4A6FF3"
-      stroke-width: 2
-    }
-  }
+  FirstResponse -> then
+  then -> conclusion
 }
 
 answer1: Answer
-answer1 <- reasoning.conclusion: {
-  style: {
-    animated: true
-    stroke: "#4A6FF3"
-    stroke-width: 2
-  }
-}
+reasoning.conclusion -> answer1
 
 RewardModel1: Reward Model
 
 answer1 -> RewardModel1
 
 RewardModel1 -> LLM1: "Δ weight" {
-  style: {
-    animated: true
-    stroke: "#4A6FF3"
-    stroke-width: 2
-    font-size: 30
-  }
+  style: text
 }
 
-
-
 RewardModel -> LLM: "Δ weight" {
-  style: {
-    animated: true
-    stroke: "#4A6FF3"
-    stroke-width: 2
-    font-size: 30
-  }
+  style: text
 }
