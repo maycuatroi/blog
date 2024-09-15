@@ -1,5 +1,105 @@
-A -> B : "Animatedaa" {
+Prompt -> LLM: {
+  style: {
+    animated: true
+    stroke: "#4A6FF3"
+    stroke-width: 2
+  }
+}
+
+LLM -> Answer: {
+  style: {
+    animated: true
+    stroke: "#4A6FF3"
+    stroke-width: 2
+  }
+}
+
+Answer -> RewardModel: {
+  style: {
+    animated: true
+    stroke: "#4A6FF3"
+    stroke-width: 2
+  }
+}
+
+Prompt1: Prompt
+LLM1: LLM
+
+Prompt1 -> LLM1: {
+  style: {
+    animated: true
+    stroke: "#4A6FF3"
+    stroke-width: 2
+  }
+}
+
+LLM1 -> reasoning.Think: {
+  style: {
+    animated: true
+    stroke: "#4A6FF3"
+    stroke-width: 2
+  }
+}
+
+reasoning: {
+  label: "Reasoning process"
+  FirstResponse: First Response
+  FirstResponse <- Think: {
     style: {
-        "animated": true
+      animated: true
+      stroke: "#4A6FF3"
+      stroke-width: 2
     }
+  }
+
+  then: Then...
+
+  FirstResponse -> then: {
+    style: {
+      animated: true
+      stroke: "#4A6FF3"
+      stroke-width: 2
+    }
+  }
+
+  conclusion <- then: {
+    style: {
+      animated: true
+      stroke: "#4A6FF3"
+      stroke-width: 2
+    }
+  }
+}
+
+answer1: Answer
+answer1 <- reasoning.conclusion: {
+  style: {
+    animated: true
+    stroke: "#4A6FF3"
+    stroke-width: 2
+  }
+}
+
+RewardModel1: Reward Model
+
+answer1 -> RewardModel1
+
+RewardModel1 -> LLM1: "Δ weight" {
+  style: {
+    animated: true
+    stroke: "#4A6FF3"
+    stroke-width: 2
+    font-size: 30
+  }
+}
+
+
+
+RewardModel -> LLM: "Δ weight" {
+  style: {
+    animated: true
+    stroke: "#4A6FF3"
+    stroke-width: 2
+    font-size: 30
+  }
 }
