@@ -1,0 +1,635 @@
+roadmap: {
+  label: "Engineering Roadmap"
+}
+
+fundamentals: {
+  label: "Fundamentals"
+  programming_languages: {
+    label: "Programming Languages"
+    Languages: {
+      python: "Python"
+      cpp: "C++"
+      sql: "SQL"
+    }
+    Libraries: {
+      numpy: "NumPy"
+      pandas: "Pandas"
+      opencv: "OpenCV"
+      matplotlib: "Matplotlib"
+      seaborn: "Seaborn"
+    }
+
+    Languages -> Libraries
+  }
+  mathematics: {
+    label: "Mathematics"
+    linear_algebra: {
+      label: "Linear Algebra"
+    }
+    calculus: {
+      label: "Calculus"
+    }
+    probability_and_statistics: {
+      label: "Probability and Statistics"
+      descriptive_statistics: {
+        label: "Descriptive Statistics"
+      }
+      probability_theory: {
+        label: "Probability Theory"
+        bayes_theorem: {
+          label: "Bayes Theorem"
+        }
+        probability_distributions: {
+          label: "Probability Distributions"
+        }
+      }
+
+      inferential_statistics: {
+        label: "Inferential Statistics"
+        central_limit_theorem: {
+          label: "Central Limit Theorem"
+        }
+        hypothesis_testing: {
+          label: "Hypothesis Testing"
+        }
+        confidence_intervals: {
+          label: "Confidence Intervals"
+        }
+      }
+      model_selection_and_estimation: {
+        label: "Model Selection and Estimation"
+        aic_and_bic: {
+          label: "AIC and BIC"
+        }
+        maximum_likelihood_estimation: {
+          label: "Maximum Likelihood Estimation"
+        }
+      }
+      descriptive_statistics -> probability_theory
+      probability_theory -> inferential_statistics
+      probability_theory -> model_selection_and_estimation
+    }
+    linear_algebra -> calculus
+    calculus -> probability_and_statistics
+  }
+  data_structures_and_algorithms: {
+    label: "Data Structures and Algorithms"
+  }
+}
+
+work_in_project -> optimization_techniques
+computer_vision: {
+  label: "Computer Vision"
+  basic_concepts: {
+    label: "Basic Concepts"
+    image_processing: "Image Processing"
+    feature_extraction: "Feature Extraction"
+    image_similarity: "Image Similarity"
+  }
+  specific_topics: {
+    label: "Specific Topics"
+    object_detection: "Object Detection"
+    semantic_segmentation: "Semantic Segmentation"
+    instance_segmentation: "Instance Segmentation"
+    pose_estimation: "Pose Estimation"
+    face_recognition: "Face Recognition"
+    behavior_recognition: "Behavior Recognition"
+  }
+  advanced_computer_vision: {
+    label: "Advanced Computer Vision"
+    autoencoders: {
+      label: "Autoencoders"
+      dimensionality_reduction: "Dimensionality Reduction"
+      anomaly_detection: "Anomaly Detection"
+    }
+    gans: {
+      label: "Generative Adversarial Networks (GANs)"
+      image_generation: "Image Generation"
+      data_augmentation: "Data Augmentation"
+    }
+  }
+  basic_concepts -> specific_topics
+  specific_topics -> advanced_computer_vision
+}
+deep_learning: {
+  label: "Deep Learning"
+  dl_libraries: {
+    label: "DL Libraries"
+    tensorflow: "TensorFlow"
+    keras: "Keras"
+    pytorch: "PyTorch"
+    jax: "JAX"
+  }
+  neural_network_architectures: {
+    label: "Neural Network Architectures"
+    cnn: {
+      label: "Convolutional Neural Networks (CNNs)"
+      image_classification: "Image Classification"
+      object_detection: "Object Detection (e.g., YOLO series)"
+    }
+    rnn: {
+      label: "Recurrent Neural Networks (RNNs)"
+      time_series_analysis: "Time Series Analysis"
+      text_processing: "Text Processing"
+    }
+    transformers: {
+      label: "Transformers"
+      nlp: "Natural Language Processing"
+    }
+    cnn -> transformers
+    rnn -> transformers
+  }
+  dl_libraries -> neural_network_architectures
+}
+deep_learning -> computer_vision
+
+roadmap -> fundamentals
+
+work_in_project: {
+  label: "Work in Project and Collaboration"
+  tools: {
+    label: "Tools"
+    jira: {
+      label: "Jira"
+    }
+    trello: {
+      label: "Trello"
+    }
+    slack: {
+      label: "Slack"
+    }
+  }
+  methodologies: {
+    label: "Methodologies"
+    agile: {
+      label: "Agile"
+    }
+    scrum: {
+      label: "Scrum"
+    }
+    kanban: {
+      label: "Kanban"
+    }
+  }
+  version_control: {
+    label: "Version Control"
+    git: {
+      label: "Git"
+    }
+    github: {
+      label: "GitHub"
+    }
+    gitlab: {
+      label: "GitLab"
+    }
+  }
+}
+
+fundamentals -> work_in_project
+
+work_in_project -> data_engineering
+
+data_engineering: {
+  label: "Data Engineering"
+
+  etl_processes: {
+    label: "ETL Processes"
+
+    data_extraction: {
+      label: "Data Extraction"
+    }
+    data_transformation: {
+      label: "Data Transformation"
+    }
+    data_loading: {
+      label: "Data Loading"
+    }
+  }
+
+  big_data_tools: {
+    label: "Big Data Tools"
+
+    pyspark: {
+      label: "PySpark"
+    }
+    dask: {
+      label: "Dask"
+    }
+  }
+
+  databases_and_storage: {
+    label: "Databases and Storage"
+
+    relational_databases: {
+      label: "Relational Databases (SQL)"
+    }
+    non_relational_databases: {
+      label: "Non-Relational Databases (NoSQL)"
+    }
+    in_memory_databases: {
+      label: "In-Memory Databases"
+    }
+    data_warehouses: {
+      label: "Data Warehouses"
+    }
+    cloud_storage_solutions: {
+      label: "Cloud Storage Solutions"
+    }
+  }
+  etl_processes -> databases_and_storage
+  big_data_tools -> databases_and_storage
+}
+
+optimization_techniques: {
+  label: "Optimization Techniques"
+
+  basic_optimization: {
+    label: "Basic Optimization"
+
+    tools: {
+      label: "Tools"
+      cvxpy: {
+        label: "CVXPY"
+      }
+      scipy: {
+        label: "SciPy"
+      }
+      cvxopt: {
+        label: "CVXOPT"
+      }
+    }
+    algorithms: {
+      label: "Algorithms"
+      convex_optimization: "Convex Optimization"
+    }
+  }
+
+  advanced_optimization: {
+    label: "Advanced Optimization"
+
+    algorithms: {
+      label: "Algorithms"
+      genetic_algorithms: {
+        label: "Genetic Algorithms"
+      }
+      swarm_intelligence: {
+        label: "Swarm Intelligence"
+      }
+      ant_colony_optimization: {
+        label: "Ant Colony Optimization"
+      }
+      reinforcement_learning: {
+        label: "Reinforcement Learning"
+      }
+    }
+  }
+  basic_optimization -> advanced_optimization
+}
+work_in_project -> deep_learning
+
+probability_and_statistic: {
+  label: "Probability and Statistic"
+  descriptive_statistics: {
+    label: "Descriptive Statistics"
+    histogram: "Histogram"
+  }
+  probability_theory: {
+    label: "Probability Theory"
+    bayes_theorem: {
+      label: "Bayes Theorem"
+    }
+    probability_distribution: {
+      label: "Probability Distribution"
+    }
+  }
+  inferential_statistics: {
+    label: "Inferential Statistics"
+    central_limit_theorem: {
+      label: "Central Limit Theorem"
+    }
+    hypothesis_testing: {
+      label: "Hypothesis Testing"
+    }
+    confidence_interval: {
+      label: "Confidence Interval"
+    }
+    p_value: {
+      label: "P Value"
+    }
+  }
+  model_selection_and_estimation: {
+    label: "Model Selection and Estimation"
+    AIC_and_BIC: {
+      label: "AIC and BIC"
+    }
+    maximum_likelihood_estimation: {
+      label: "Maximum Likelihood Estimation"
+    }
+  }
+  descriptive_statistics -> probability_theory
+  probability_theory -> inferential_statistics
+  probability_theory -> model_selection_and_estimation
+}
+work_in_project -> probability_and_statistic
+
+
+advanced_analytics: {
+  label: "Advanced Analytics"
+  time_series_analysis: {
+    label: "Time Series Analysis"
+  }
+  anomaly_detection: {
+    label: "Anomaly Detection"
+  }
+  cluster_analysis: {
+    label: "Cluster Analysis"
+  }
+  association_rule_mining: {
+    label: "Association Rule Mining"
+  }
+}
+
+probability_and_statistic -> advanced_analytics
+
+devops_mlops: {
+  label: "DevOps and MLOps"
+
+  ci_cd: {
+    label: "Continuous Integration/Continuous Deployment (CI/CD)"
+    jenkins: {
+      label: "Jenkins"
+    }
+    gitlab_ci: {
+      label: "GitLab CI"
+    }
+    github_actions: {
+      label: "GitHub Actions"
+    }
+  }
+
+  containerization_orchestration: {
+    label: "Containerization and Orchestration"
+    docker: {
+      label: "Docker"
+    }
+    docker_swarm: {
+      label: "Docker Swarm"
+    }
+    kubernetes: {
+      label: "Kubernetes"
+    }
+  }
+
+  monitoring_logging: {
+    label: "Monitoring and Logging"
+    prometheus: {
+      label: "Prometheus"
+    }
+    grafana: {
+      label: "Grafana"
+    }
+    elk_stack: {
+      label: "ELK Stack"
+    }
+  }
+
+  iac: {
+    label: "Infrastructure as Code (IaC)"
+    terraform: {
+      label: "Terraform"
+    }
+    ansible: {
+      label: "Ansible"
+    }
+  }
+  containerization_orchestration -> ci_cd
+  ci_cd -> monitoring_logging
+  monitoring_logging -> iac
+}
+
+work_in_project -> devops_mlops
+
+cloud_computing: {
+  label: "Cloud Computing"
+  cloud_platforms: {
+    label: "Cloud Platforms"
+    aws: {
+      label: "Amazon Web Services (AWS)"
+    }
+    gcp: {
+      label: "Google Cloud Platform (GCP)"
+    }
+    azure: {
+      label: "Microsoft Azure"
+    }
+    ibm_cloud: {
+      label: "IBM Cloud"
+    }
+  }
+  services: {
+    label: "Services"
+    compute_services: {
+      label: "Compute Services"
+    }
+    storage_services: {
+      label: "Storage Services"
+    }
+    database_services: {
+      label: "Database Services"
+    }
+    ai_ml_services: {
+      label: "AI and Machine Learning Services"
+    }
+  }
+  cloud_platforms -> services
+}
+
+work_in_project -> cloud_computing
+
+low_level_programming_electronics: {
+  label: "Low-Level Programming and Electronics Engineering"
+  programming_languages: {
+    label: "Programming Languages"
+    cpp: {
+      label: "C++"
+    }
+    cuda: {
+      label: "CUDA"
+    }
+    opencl: {
+      label: "OpenCL"
+    }
+  }
+  hardware_device_drivers: {
+    label: "Hardware and Device Drivers"
+    arduino: {
+      label: "Arduino"
+    }
+    nvidia_jetson: {
+      label: "NVIDIA Jetson"
+    }
+    raspberry_pi: {
+      label: "Raspberry Pi"
+    }
+    rockchip: {
+      label: "Rockchip"
+    }
+  }
+  embedded_systems: {
+    label: "Embedded Systems"
+  }
+  programming_languages -> embedded_systems
+  hardware_device_drivers -> embedded_systems
+}
+
+computer_vision -> low_level_programming_electronics
+
+apis_web_development: {
+  label: "APIs and Web Development"
+  frameworks: {
+    label: "Frameworks"
+    fastapi: {
+      label: "FastAPI"
+    }
+    django: {
+      label: "Django"
+    }
+    flask: {
+      label: "Flask"
+    }
+  }
+  restful_apis: {
+    label: "RESTful APIs"
+  }
+  graphql: {
+    label: "GraphQL"
+  }
+  restful_apis -> graphql
+  frameworks -> restful_apis
+}
+
+work_in_project -> apis_web_development
+
+advanced_topics_research: {
+  label: "Advanced Topics and Research"
+  advanced_machine_learning: {
+    label: "Advanced Machine Learning"
+    meta_learning: {
+      label: "Meta-Learning"
+    }
+    federated_learning: {
+      label: "Federated Learning"
+    }
+    transfer_learning: {
+      label: "Transfer Learning"
+    }
+  }
+  advanced_mathematics: {
+    label: "Advanced Mathematics"
+    optimization_theory: {
+      label: "Optimization Theory"
+    }
+    information_theory: {
+      label: "Information Theory"
+    }
+  }
+  model_specialization: {
+    label: "Model Specialization"
+    model_compression: {
+      label: "Model Compression"
+    }
+    model_quantization: {
+      label: "Model Quantization"
+    }
+    model_pruning: {
+      label: "Model Pruning"
+    }
+  }
+  explainable_ai: {
+    label: "Explainable AI (XAI)"
+  }
+  ethics_in_ai: {
+    label: "Ethics in AI"
+  }
+}
+
+additional_recommendations: {
+  label: "Additional Recommendations"
+  
+  data_security_compliance: {
+    label: "Data Security and Compliance"
+    data_privacy_laws: {
+      label: "Understand data privacy laws (e.g., GDPR, CCPA)"
+    }
+    security_best_practices: {
+      label: "Implement security best practices"
+    }
+  }
+  software_engineering_principles: {
+    label: "Software Engineering Principles"
+    clean_code: {
+      label: "Clean Code"
+    }
+    design_patterns: {
+      label: "Design Patterns"
+    }
+    testing: {
+      label: "Testing (Unit Tests, Integration Tests)"
+    }
+  }
+  edge_computing_iot: {
+    label: "Edge Computing and IoT"
+    real_time_data_processing: {
+      label: "Real-time Data Processing"
+    }
+    edge_ai: {
+      label: "Edge AI"
+    }
+  }
+  soft_skills: {
+    label: "Soft Skills"
+    communication: {
+      label: "Communication"
+    }
+    teamwork: {
+      label: "Teamwork"
+    }
+    problem_solving: {
+      label: "Problem-Solving"
+    }
+  }
+}
+
+natural_language_processing: {
+  label: "Natural Language Processing (NLP)"
+  fundamentals: "Fundamentals"
+  text_embedding: "Text Embedding"
+  text_classification: "Text Classification"
+
+  advanced_topics: {
+    label: "Advanced Topics"
+    chatbots: {
+      label: "Chatbots"
+    }
+    language_generation: {
+      label: "Language Generation"
+    }
+    sentiment_analysis: {
+      label: "Sentiment Analysis"
+    }
+
+    text_summarization: "Text Summarization"
+  }
+  fundamentals -> text_embedding
+  text_embedding -> text_classification
+  text_embedding -> advanced_topics
+}
+  
+deep_learning -> natural_language_processing
+
+natural_language_processing -> advanced_topics_research
+computer_vision -> advanced_topics_research
+advanced_analytics -> advanced_topics_research
+work_in_project -> additional_recommendations:"Long time learning"{
+  style.stroke-dash: 3
+}
