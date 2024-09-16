@@ -1,0 +1,41 @@
+direction: down
+
+(** -> **)[*].style.stroke: "#4A6FF3"
+(** -> **)[*].style.stroke-width: 2
+(** -> **)[*].style.animated: true
+
+
+
+Prompt -> LLM
+LLM -> Answer
+Answer -> RewardModel
+
+Prompt1: Prompt
+LLM1: LLM
+
+Prompt1 -> LLM1
+LLM1 -> reasoning.Think
+
+reasoning: {
+  label: "Reasoning process"
+  FirstResponse: First Response
+  Think -> FirstResponse
+  then: Then...
+  FirstResponse -> then
+  then -> conclusion
+}
+
+answer1: Answer
+reasoning.conclusion -> answer1
+
+RewardModel1: Reward Model
+
+answer1 -> RewardModel1
+
+RewardModel1 -> LLM1: "Δ weight" {
+  style: text
+}
+
+RewardModel -> LLM: "Δ weight" {
+  style: text
+}
