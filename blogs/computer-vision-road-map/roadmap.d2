@@ -3,39 +3,58 @@
 #   near: top-center
 # }
 
-fundamentals: @./fundamentals.d2
-computer_vision: @./computer_vision.d2
-deep_learning: @./deep_learning.d2
-work_in_project: @./work_in_project.d2
-data_engineering: @./data_engineering.d2
-optimization_techniques: @./optimization_techniques.d2
-probability_and_statistic: @./probability_and_statistic.d2
-advanced_analytics: @./advanced_analytics.d2
-devops_mlops: @./devops_mlops.d2
-cloud_computing: @./cloud_computing.d2
-low_level_programming_electronics: @./low_level_programming_electronics.d2
-apis_web_development: @./apis_web_development.d2
-advanced_topics_research: @./advanced_topics_research.d2
-additional_recommendations: @./additional_recommendations.d2
-natural_language_processing: @./natural_language_processing.d2
+fundamentals: @fundamentals
+computer_vision: @computer_vision
+deep_learning: @deep_learning
+work_in_project: @work_in_project
+data_engineering: @data_engineering
+optimization_techniques: @optimization_techniques
+probability_and_statistic: @probability_and_statistic
+advanced_analytics: @advanced_analytics
+devops_mlops: @devops_mlops
+cloud_computing: @cloud_computing
+low_level_programming_electronics: @low_level_programming_electronics
+apis_web_development: @apis_web_development
+advanced_topics_research: @advanced_topics_research
+natural_language_processing: @natural_language_processing
+ai_solution_architect: @ai_solution_architect
+soft_skills: @soft_skills
+networking: @networking
+software_design_principle: @software_design_principle
+software_engineering_principles: @software_engineering_principles
+data_security_compliance: @data_security_compliance
 
-*.label:""
 
-
-work_in_project -> optimization_techniques
+probability_and_statistic -> optimization_techniques
 deep_learning -> computer_vision
 fundamentals -> work_in_project
 work_in_project -> data_engineering
 work_in_project -> deep_learning
+work_in_project -> soft_skills
 work_in_project -> probability_and_statistic
 probability_and_statistic -> advanced_analytics
 work_in_project -> devops_mlops
-work_in_project -> cloud_computing
+software_engineering_principles -> cloud_computing
 computer_vision -> low_level_programming_electronics
-work_in_project -> apis_web_development
+software_engineering_principles -> apis_web_development
 deep_learning -> natural_language_processing
 natural_language_processing -> advanced_topics_research
 computer_vision -> advanced_topics_research
-advanced_analytics -> advanced_topics_research
-additional_recommendations : {near: center-left}
-fundamentals:{near: top-center}
+# advanced_analytics -> advanced_topics_research
+fundamentals: {near: top-center}
+
+deep_learning -> ai_solution_architect
+devops_mlops -> ai_solution_architect
+
+cloud_computing -> networking
+apis_web_development -> networking
+
+soft_skills.sharp_mindset -> ai_solution_architect
+natural_language_processing -> ai_solution_architect
+computer_vision -> ai_solution_architect
+
+networking -> software_design_principle
+software_design_principle -> data_security_compliance
+data_security_compliance -> ai_solution_architect
+advanced_analytics -> ai_solution_architect
+optimization_techniques -> ai_solution_architect

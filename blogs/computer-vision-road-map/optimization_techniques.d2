@@ -1,46 +1,45 @@
+label: "Optimization Techniques"
 
-optimization_techniques: {
-    label: "Optimization Techniques"
-  
-    basic_optimization: {
-      label: "Basic Optimization"
-  
-      tools: {
-        label: "Tools"
-        cvxpy: {
-          label: "CVXPY"
-        }
-        scipy: {
-          label: "SciPy"
-        }
-        cvxopt: {
-          label: "CVXOPT"
-        }
-      }
-      algorithms: {
-        label: "Algorithms"
-        convex_optimization: "Convex Optimization"
-      }
+basic_optimization: {
+  label: "Basic Optimization"
+
+  tools: {
+    label: "Tools"
+    cvxpy: {
+      label: "CVXPY"
     }
-  
-    advanced_optimization: {
-      label: "Advanced Optimization"
-  
-      algorithms: {
-        label: "Algorithms"
-        genetic_algorithms: {
-          label: "Genetic Algorithms"
-        }
-        swarm_intelligence: {
-          label: "Swarm Intelligence"
-        }
-        ant_colony_optimization: {
-          label: "Ant Colony Optimization"
-        }
-        reinforcement_learning: {
-          label: "Reinforcement Learning"
-        }
-      }
+    scipy: {
+      label: "SciPy"
     }
-    basic_optimization -> advanced_optimization
+    cvxopt: {
+      label: "CVXOPT"
+    }
   }
+  algorithms: {
+    label: "Algorithms"
+    convex_optimization: "Convex Optimization"
+  }
+}
+
+advanced_optimization: {
+  label: "Advanced Optimization"
+
+  algorithms: {
+    label: "Algorithms"
+    genetic_algorithms: {
+      label: "Genetic Algorithms"
+    }
+    swarm_intelligence: {
+      label: "Swarm Intelligence"
+    }
+    ant_colony_optimization: {
+      label: "Ant Colony Optimization"
+    }
+    reinforcement_learning: {
+      label: "Reinforcement Learning"
+    }
+  }
+}
+basic_optimization -> advanced_optimization
+
+grid-rows: 2

@@ -1,33 +1,31 @@
-computer_vision: {
-    label: "Computer Vision"
-    basic_concepts: {
-      label: "Basic Concepts"
-      image_processing: "Image Processing"
-      feature_extraction: "Feature Extraction"
-      image_similarity: "Image Similarity"
-    }
-    specific_topics: {
-      label: "Specific Topics"
-      object_detection: "Object Detection"
-      semantic_segmentation: "Semantic Segmentation"
-      instance_segmentation: "Instance Segmentation"
-      pose_estimation: "Pose Estimation"
-      face_recognition: "Face Recognition"
-      behavior_recognition: "Behavior Recognition"
-    }
-    advanced_computer_vision: {
-      label: "Advanced Computer Vision"
-      autoencoders: {
-        label: "Autoencoders"
-        dimensionality_reduction: "Dimensionality Reduction"
-        anomaly_detection: "Anomaly Detection"
-      }
-      gans: {
-        label: "Generative Adversarial Networks (GANs)"
-        image_generation: "Image Generation"
-        data_augmentation: "Data Augmentation"
-      }
-    }
-    basic_concepts -> specific_topics
-    specific_topics -> advanced_computer_vision
+label: "Computer Vision"
+basic_concepts: {
+  label: "Basic Concepts"
+  image_processing: "Image Processing"
+  feature_extraction: "Feature Extraction"
+  image_similarity: "Image Similarity"
+}
+specific_topics: {
+  label: "Specific Topics"
+  object_detection: "Object Detection"
+  semantic_segmentation: "Semantic Segmentation"
+  instance_segmentation: "Instance Segmentation"
+  pose_estimation: "Pose Estimation"
+  face_recognition: "Face Recognition"
+  behavior_recognition: "Behavior Recognition"
+}
+advanced_computer_vision: {
+  label: "Advanced Computer Vision"
+  autoencoders: {
+    label: "Autoencoders"
+    dimensionality_reduction: "Dimensionality Reduction"
+    anomaly_detection: "Anomaly Detection"
   }
+  gans: {
+    label: "Generative Adversarial Networks (GANs)"
+    image_generation: "Image Generation"
+    data_augmentation: "Data Augmentation"
+  }
+}
+basic_concepts -> specific_topics
+specific_topics -> advanced_computer_vision
