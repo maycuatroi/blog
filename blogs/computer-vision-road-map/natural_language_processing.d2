@@ -1,0 +1,26 @@
+
+natural_language_processing: {
+    label: "Natural Language Processing (NLP)"
+    fundamentals: "Fundamentals"
+    text_embedding: "Text Embedding"
+    text_classification: "Text Classification"
+  
+    advanced_topics: {
+      label: "Advanced Topics"
+      chatbots: {
+        label: "Chatbots"
+      }
+      language_generation: {
+        label: "Language Generation"
+      }
+      sentiment_analysis: {
+        label: "Sentiment Analysis"
+      }
+  
+      text_summarization: "Text Summarization"
+    }
+    fundamentals -> text_embedding
+    text_embedding -> text_classification
+    text_embedding -> advanced_topics
+  }
+    

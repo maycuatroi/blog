@@ -1,0 +1,30 @@
+deep_learning: {
+    label: "Deep Learning"
+    dl_libraries: {
+      label: "DL Libraries"
+      tensorflow: "TensorFlow"
+      keras: "Keras"
+      pytorch: "PyTorch"
+      jax: "JAX"
+    }
+    neural_network_architectures: {
+      label: "Neural Network Architectures"
+      cnn: {
+        label: "Convolutional Neural Networks (CNNs)"
+        image_classification: "Image Classification"
+        object_detection: "Object Detection (e.g., YOLO series)"
+      }
+      rnn: {
+        label: "Recurrent Neural Networks (RNNs)"
+        time_series_analysis: "Time Series Analysis"
+        text_processing: "Text Processing"
+      }
+      transformers: {
+        label: "Transformers"
+        nlp: "Natural Language Processing"
+      }
+      cnn -> transformers
+      rnn -> transformers
+    }
+    dl_libraries -> neural_network_architectures
+  }

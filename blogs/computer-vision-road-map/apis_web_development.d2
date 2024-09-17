@@ -1,0 +1,24 @@
+
+apis_web_development: {
+    label: "APIs and Web Development"
+    frameworks: {
+      label: "Frameworks"
+      fastapi: {
+        label: "FastAPI"
+      }
+      django: {
+        label: "Django"
+      }
+      flask: {
+        label: "Flask"
+      }
+    }
+    restful_apis: {
+      label: "RESTful APIs"
+    }
+    graphql: {
+      label: "GraphQL"
+    }
+    restful_apis -> graphql
+    frameworks -> restful_apis
+  }

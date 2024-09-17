@@ -1,0 +1,57 @@
+
+devops_mlops: {
+    label: "DevOps and MLOps"
+  
+    ci_cd: {
+      label: "Continuous Integration/Continuous Deployment (CI/CD)"
+      jenkins: {
+        label: "Jenkins"
+      }
+      gitlab_ci: {
+        label: "GitLab CI"
+      }
+      github_actions: {
+        label: "GitHub Actions"
+      }
+    }
+  
+    containerization_orchestration: {
+      label: "Containerization and Orchestration"
+      docker: {
+        label: "Docker"
+      }
+      docker_swarm: {
+        label: "Docker Swarm"
+      }
+      kubernetes: {
+        label: "Kubernetes"
+      }
+    }
+  
+    monitoring_logging: {
+      label: "Monitoring and Logging"
+      prometheus: {
+        label: "Prometheus"
+      }
+      grafana: {
+        label: "Grafana"
+      }
+      elk_stack: {
+        label: "ELK Stack"
+      }
+    }
+  
+    iac: {
+      label: "Infrastructure as Code (IaC)"
+      terraform: {
+        label: "Terraform"
+      }
+      ansible: {
+        label: "Ansible"
+      }
+    }
+    containerization_orchestration -> ci_cd
+    ci_cd -> monitoring_logging
+    monitoring_logging -> iac
+  }
+  

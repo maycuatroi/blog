@@ -1,0 +1,51 @@
+
+data_engineering: {
+    label: "Data Engineering"
+  
+    etl_processes: {
+      label: "ETL Processes"
+  
+      data_extraction: {
+        label: "Data Extraction"
+      }
+      data_transformation: {
+        label: "Data Transformation"
+      }
+      data_loading: {
+        label: "Data Loading"
+      }
+    }
+  
+    big_data_tools: {
+      label: "Big Data Tools"
+  
+      pyspark: {
+        label: "PySpark"
+      }
+      dask: {
+        label: "Dask"
+      }
+    }
+  
+    databases_and_storage: {
+      label: "Databases and Storage"
+  
+      relational_databases: {
+        label: "Relational Databases (SQL)"
+      }
+      non_relational_databases: {
+        label: "Non-Relational Databases (NoSQL)"
+      }
+      in_memory_databases: {
+        label: "In-Memory Databases"
+      }
+      data_warehouses: {
+        label: "Data Warehouses"
+      }
+      cloud_storage_solutions: {
+        label: "Cloud Storage Solutions"
+      }
+    }
+    etl_processes -> databases_and_storage
+    big_data_tools -> databases_and_storage
+  }

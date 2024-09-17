@@ -1,0 +1,43 @@
+probability_and_statistic: {
+    label: "Probability and Statistic"
+    descriptive_statistics: {
+      label: "Descriptive Statistics"
+      histogram: "Histogram"
+    }
+    probability_theory: {
+      label: "Probability Theory"
+      bayes_theorem: {
+        label: "Bayes Theorem"
+      }
+      probability_distribution: {
+        label: "Probability Distribution"
+      }
+    }
+    inferential_statistics: {
+      label: "Inferential Statistics"
+      central_limit_theorem: {
+        label: "Central Limit Theorem"
+      }
+      hypothesis_testing: {
+        label: "Hypothesis Testing"
+      }
+      confidence_interval: {
+        label: "Confidence Interval"
+      }
+      p_value: {
+        label: "P Value"
+      }
+    }
+    model_selection_and_estimation: {
+      label: "Model Selection and Estimation"
+      AIC_and_BIC: {
+        label: "AIC and BIC"
+      }
+      maximum_likelihood_estimation: {
+        label: "Maximum Likelihood Estimation"
+      }
+    }
+    descriptive_statistics -> probability_theory
+    probability_theory -> inferential_statistics
+    probability_theory -> model_selection_and_estimation
+  }

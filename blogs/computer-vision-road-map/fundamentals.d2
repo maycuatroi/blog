@@ -1,0 +1,85 @@
+
+fundamentals: {
+    label: "Fundamentals"
+    programming_languages: {
+      label: "Programming Languages"
+      Languages: {
+        python: {
+          label: "Python"
+          icon: https://cdn3.iconfinder.com/data/icons/logos-and-brands-adobe/512/267_Python-512.png
+        }
+        cpp: {
+          label: "C++"
+          icon: https://cdn-icons-png.flaticon.com/512/6132/6132222.png
+        }
+        sql: {
+          label: "SQL"
+          icon: https://cdn-icons-png.flaticon.com/512/2305/2305934.png
+        }
+      }
+      Libraries: {
+        numpy: "NumPy"
+        pandas: "Pandas"
+        opencv: "OpenCV"
+        matplotlib: "Matplotlib"
+        seaborn: "Seaborn"
+      }
+  
+      Languages -> Libraries
+    }
+    mathematics: {
+      label: "Mathematics"
+      linear_algebra: {
+        label: "Linear Algebra"
+      }
+      calculus: {
+        label: "Calculus"
+      }
+      probability_and_statistics: {
+        label: "Probability and Statistics"
+        descriptive_statistics: {
+          label: "Descriptive Statistics"
+        }
+        probability_theory: {
+          label: "Probability Theory"
+          bayes_theorem: {
+            label: "Bayes Theorem"
+          }
+          probability_distributions: {
+            label: "Probability Distributions"
+          }
+        }
+  
+        inferential_statistics: {
+          label: "Inferential Statistics"
+          central_limit_theorem: {
+            label: "Central Limit Theorem"
+          }
+          hypothesis_testing: {
+            label: "Hypothesis Testing"
+          }
+          confidence_intervals: {
+            label: "Confidence Intervals"
+          }
+        }
+        model_selection_and_estimation: {
+          label: "Model Selection and Estimation"
+          aic_and_bic: {
+            label: "AIC and BIC"
+          }
+          maximum_likelihood_estimation: {
+            label: "Maximum Likelihood Estimation"
+          }
+        }
+        descriptive_statistics -> probability_theory
+        probability_theory -> inferential_statistics
+        probability_theory -> model_selection_and_estimation
+      }
+      linear_algebra -> calculus
+      calculus -> probability_and_statistics
+    }
+    data_structures_and_algorithms: {
+      label: "Data Structures and Algorithms"
+    }
+  }
+  
