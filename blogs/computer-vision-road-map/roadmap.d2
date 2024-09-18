@@ -23,8 +23,15 @@ networking: @networking
 software_design_principle: @software_design_principle
 software_engineering_principles: @software_engineering_principles
 data_security_compliance: @data_security_compliance
+data_orchestration: @data_orchestration
+big_data_engineering: @big_data_engineering
+big_data_cloud_computing: @big_data_cloud_computing
 
+big_data_cloud_computing -> big_data_engineering
+data_engineering -> data_orchestration
+data_orchestration -> big_data_engineering
 
+data_engineering -> big_data_cloud_computing
 probability_and_statistic -> optimization_techniques
 deep_learning -> computer_vision
 fundamentals -> work_in_project
@@ -40,7 +47,7 @@ software_engineering_principles -> apis_web_development
 deep_learning -> natural_language_processing
 natural_language_processing -> advanced_topics_research
 computer_vision -> advanced_topics_research
-# advanced_analytics -> advanced_topics_research
+work_in_project -> software_engineering_principles
 fundamentals: {near: top-center}
 
 deep_learning -> ai_solution_architect
@@ -58,3 +65,4 @@ software_design_principle -> data_security_compliance
 data_security_compliance -> ai_solution_architect
 advanced_analytics -> ai_solution_architect
 optimization_techniques -> ai_solution_architect
+big_data_engineering -> ai_solution_architect
