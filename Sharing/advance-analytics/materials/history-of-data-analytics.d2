@@ -1,0 +1,113 @@
+direction: down
+
+before_computer: {
+  direction: right
+  label: "Trước máy tính"
+
+
+  c17: {
+    label: "Thế kỉ 17"
+    text: |md
+      # Thế kỉ 17: John Graunt và Phân tích Dân số
+
+      - **John Graunt**: Nhà thống kê người Anh, tiên phong trong phân tích dữ liệu thống kê
+      - **Nghiên cứu**: Mẫu dân số và tử vong
+      - **Phát hiện**: 
+        - Chênh lệch giữa nam và nữ
+        - Khác biệt thành thị - nông thôn
+        - Thay đổi theo mùa
+      - **Công trình**: "Natural and Political Observations made upon the Bills of Mortality" (1662)
+      - **Đóng góp**: Nền móng cho khoa học thống kê hiện đại và nhân khẩu học
+    |
+  }
+
+  c18: {
+    label: "Thế kỉ 18"
+    text: |md
+      # Thế kỉ 18: Tiến bộ trong Xác suất và Thống kê
+
+      ## Thomas Bayes
+      - Phát triển định lý Bayes
+      - Công cụ quan trọng trong lý thuyết xác suất và thống kê
+
+      ## Pierre-Simon Laplace
+      - Mở rộng công việc của Bayes
+      - Áp dụng vào nhiều lĩnh vực khoa học và kỹ thuật
+    |
+  }
+
+  c19: {
+    label: "Thế kỷ 19"
+    text: |md
+      # Thế kỷ 19: Tự động hóa và Thống kê Hiện đại
+
+      ## Herman Hollerith và Máy tạo bảng Hollerith (1890)
+      - Bước tiến lớn trong tự động hóa xử lý dữ liệu
+      - Sử dụng trong điều tra dân số Hoa Kỳ 1890
+      - Giảm thời gian xử lý dữ liệu từ 10 năm xuống 3 năm
+
+      ## Francis Galton
+      - Phát triển khái niệm hồi quy và tương quan
+      - Đóng góp quan trọng cho thống kê hiện đại
+    |
+  }
+  c17 -> c18
+  c18 -> c19
+}
+
+after_computer: {
+  label: "Kỉ nguyên máy tính"
+  direction: right
+
+  c20: {
+    label: "Thế kỷ 20"
+    text: |md
+      # Thế kỷ 20: Kỷ nguyên Máy tính và Internet
+
+      ## Những năm 1960
+      - Thuật ngữ "phân tích dữ liệu" được sử dụng rộng rãi
+      - Máy tính trở nên phổ biến, cải thiện khả năng xử lý dữ liệu
+
+      ## John Tukey (1962)
+      - Xuất bản "The Future of Data Analysis"
+      - Đặt nền móng cho phân tích dữ liệu hiện đại
+
+      ## Những năm 1980
+      - Sự phát triển của máy tính cá nhân
+      - Phân tích dữ liệu trở nên dễ tiếp cận hơn
+
+      ## Cuối thế kỷ 20
+      - Sự ra đời của Internet và World Wide Web
+      - Tạo ra lượng dữ liệu khổng lồ
+      - Dẫn đến sự phát triển của "Big Data" và kỹ thuật phân tích tiên tiến
+    |
+  }
+
+  c21: {
+    label: "Thế kỷ 21"
+    text: |md
+      # Thế kỷ 21: Kỷ nguyên Dữ liệu Lớn và AI
+
+      ## Sự bùng nổ công nghệ
+      - Dữ liệu lớn (Big Data)
+      - Học máy (Machine Learning)
+      - Trí tuệ nhân tạo (AI)
+
+      ## Công cụ và nền tảng tiên tiến
+      - Hadoop
+      - Spark
+      - Dịch vụ đám mây
+
+      ## Tầm quan trọng
+      - Phân tích dữ liệu trở thành không thể thiếu trong:
+        - Hầu hết các ngành công nghiệp
+        - Lĩnh vực nghiên cứu
+    |
+  }
+
+  c20 -> c21
+}
+
+before_computer -> after_computer
+
+grid-rows: 2

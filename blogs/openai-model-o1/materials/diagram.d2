@@ -4,7 +4,14 @@ direction: down
 (** -> **)[*].style.stroke-width: 2
 (** -> **)[*].style.animated: true
 
-
+user1{
+    label: "User"
+    shape: person
+}
+user2{
+    label: "User"
+    shape: person
+}
 
 Prompt -> LLM
 LLM -> Answer
@@ -39,3 +46,6 @@ RewardModel1 -> LLM1: "Δ weight" {
 RewardModel -> LLM: "Δ weight" {
   style: text
 }
+
+answer1 -> user1: "Response to user"
+answer -> user2: "Response to user"

@@ -1,0 +1,31 @@
+direction: up
+
+data1{
+    label: "Dữ liệu"
+    icon: 'https://cdn-icons-png.flaticon.com/512/11893/11893731.png'
+}
+data2{
+    label: "Dữ liệu"
+    icon: 'https://cdn-icons-png.flaticon.com/512/11893/11893731.png'
+}
+
+analytics{
+    label: "Phân tích"
+    icon: https://cdn-icons-png.flaticon.com/512/1465/1465898.png
+}
+
+
+optimal_operation{
+    label: "Vận hành tối ưu"
+    icon:  'https://cdn-icons-png.flaticon.com/512/3488/3488830.png'
+}
+
+
+
+
+data1 -> analytics -> optimal_operation
+data2 -> analytics
+(** -> **)[*].style.stroke: "#4A6FF3"
+(** -> **)[*].style.stroke-width: 3
+(data* -> **)[*].style.animated: true
+
