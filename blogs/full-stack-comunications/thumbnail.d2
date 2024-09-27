@@ -1,0 +1,36 @@
+option_1: {
+  label: "Option 1"
+  backend: {
+    label: "Backend"
+  }
+
+  frontend: {
+    label: "Frontend"
+  }
+
+  backend -> frontend: "Request 1:\ndepartment: {\nid:1,\n name: 'IT',\n description: 'IT Department'\n}"
+  backend -> frontend: "Request 2:\nemployee: {\nid:2,\n name: 'John',\n department:{\n\tid:1,\n\tname: 'IT',\n\tdescription: 'IT Department'\n}\n}"
+}
+
+option_2: {
+  label: "Option 2"
+  backend: {
+    label: "Backend"
+  }
+
+  frontend: {
+    label: "Frontend"
+    http_service: "HTTP Service"
+    entity_storage: {
+      label: "Entity Storage with cache"
+      cache: "Cache"
+    }
+
+    http_service -> entity_storage.cache
+    entity_storage -> http_service: "Retrieve department details using department_id"
+  }
+
+  backend -> frontend: "Request 1:\n{\n  \"department\": {\n    \"id\": 1,\n    \"name\": \"IT\",\n    \"description\": \"IT Department\"\n  }\n}"
+
+  backend -> frontend: "Request 2:\n{\n  \"employee\": {\n    \"id\": 2,\n    \"name\": \"John\",\n    \"department\": 1\n  }\n}"
+}

@@ -1,0 +1,11 @@
+- Analyze theo các công đoạn
+
+
+- Data driven
+
+
+keys story:
+- Cái gì đang sảy ra
+- Tại sao nó sảy ra
+- Cái gì sẽ sảy ra
+- Dựa trên data Make decision faster và bester

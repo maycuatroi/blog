@@ -1,0 +1,95 @@
+backend: {
+  sql: "SQL"
+  redis: "Redis"
+  model: "Model"
+  view: "View"
+  serializers: "Serializers"
+
+  sql -> model
+  redis -> model
+  model -> view
+  view -> serializers
+}
+
+frontend: {
+  http_service: "HTTP Service"
+  entity_storage: {
+    label: "Entity Storage with cache"
+    cache: "Cache"
+  }
+  html_builder: "HTML Builder"
+
+  http_service -> entity_storage.cache
+  entity_storage -> html_builder
+  entity_storage -> http_service: "Retrieve department details using department_id"
+}
+
+backend -> frontend: "Request 1:\n{\n  \"department\": {\n    \"id\": 1,\n    \"name\": \"IT\",\n    \"description\": \"IT Department\"\n  }\n}"
+
+backend -> frontend: "Request 2:\n{\n  \"employee\": {\n    \"id\": 2,\n    \"name\": \"John\",\n    \"department\": 1\n  }\n}"
+
+footer: |md
+  # Option 2
+  Backend Returns Necessary Fields, Other Fields Cached on Client
+
+
+  # Requests:
+  - Request 1:
+    ```json
+    {
+      "department": {
+        "id": 1,
+        "name": "IT",
+        "description": "IT Department"
+      }
+    }
+    ```
+  - Request 2:
+    ```json
+    {
+      "employee": {
+        "id": 2,
+        "name": "John",
+        "department": 1
+      }
+    }
+  # Advantages
+
+  ## Optimized Bandwidth Usage
+  - Reduces redundant data transmission.
+  - Enhances load times and responsiveness, especially on slow networks.
+
+  ## Reduced Server Load
+  - Backend handles fewer data fields, boosting performance and scalability.
+  - Enables the server to manage more concurrent requests.
+
+  ## Enhanced Performance
+  - Cached data is quickly accessible on the client side.
+  - Provides a smoother user experience with faster screen transitions and interactions.
+
+  ## Scalability
+  - Efficient resource use supports a larger user base.
+  - Ideal for applications with complex data models and frequent interactions.
+
+  # Disadvantages
+
+  ## Increased Client-Side Complexity
+  - Requires a caching mechanism to be implemented and maintained.
+  - Adds complexity to the frontend codebase, potentially increasing development time.
+
+  ## Cache Invalidation Challenges
+  - Keeping cached data consistent with the backend is challenging.
+  - Risk of showing outdated information if the cache isn't properly managed.
+
+  ## Initial Data Availability
+  - The client must ensure all necessary data is cached beforehand.
+  - May need additional requests or preloading strategies, complicating data flow.
+
+  ## Missing Data Handling
+  - Must manage scenarios where cached data is missing or corrupted.
+  - Needs fallback mechanisms to fetch data from the backend when necessary.
+|
+
+footer: {
+  near: bottom-center
+}

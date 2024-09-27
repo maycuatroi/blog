@@ -24,10 +24,11 @@
 - Những thách thức của AI trên thiết bị và phát triển di động
 - Niềm hạnh phúc khi tạo ra giải pháp tác động đến cuộc sống người dùng
 
-## V. Sự Trưởng Thành: Phát Triển Sự Đồng Cảm trong Kỹ Thuật AI
-- Giai thoại: Nhận ra tầm quan trọng của thiết kế lấy người dùng làm trung tâm
-- Cân nhắc đạo đức trong phát triển AI
-- Hợp tác với các bên liên quan đa dạng
+## V. Sự Trưởng Thành: Phát Triển Sự Thấu Cảm và Tính Chính Trực
+- Giai thoại: Nhận ra tầm quan trọng của thiết kế lấy người dùng làm trung tâm thông qua tự nhận thức và khả năng lắng nghe
+- Cân nhắc đạo đức và tính minh bạch trong phát triển AI
+- Hợp tác với các bên liên quan đa dạng, tập trung vào mục tiêu lâu dài
+- Xây dựng văn hóa tính chính trực và trách nhiệm trong các dự án AI
 
 ## VI. Hiện Tại: Cân Bằng Cả Bốn Trụ Cột
 - Các dự án và thách thức hiện tại

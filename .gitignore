@@ -2,3 +2,6 @@
 .DS_Store
 # Ignore .DS_Store files in all subdirectories
 **/.DS_Store
+.idea
+*.png
+*.svg

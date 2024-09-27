@@ -1,0 +1,88 @@
+backend: {
+  sql: "SQL"
+  redis: "Redis"
+  model: "Model"
+  view: "View"
+  serializers: "Serializers"
+
+  sql -> model
+  redis -> model
+  model -> view
+  view -> serializers
+}
+
+frontend: {
+  http_service: "HTTP Service"
+  entity_storage: "Entity Storage"
+  html_builder: "HTML Builder"
+
+  http_service -> entity_storage
+  entity_storage -> html_builder
+}
+
+backend -> frontend: "Request 1:\ndepartment: {\nid:1,\n name: 'IT',\n description: 'IT Department'\n}"
+backend -> frontend: "Request 2:\nemployee: {\nid:2,\n name: 'John',\n department:{\n\tid:1,\n\tname: 'IT',\n\tdescription: 'IT Department'\n}\n}"
+
+
+footer: |md
+  # Option 1
+  Backend Returns All Data Fields for Each Screen
+  # Requests:
+  - Request 1:
+    ```json
+    {
+      "department": {
+        "id": 1,
+        "name": "IT",
+        "description": "IT Department"
+      }
+    }
+    ```
+
+  - Request 2:
+    ```json
+    {
+      "employee": {
+        "id": 2,
+        "name": "John",
+        "department": {
+          "id": 1,
+          "name": "IT",
+          "description": "IT Department"
+        }
+      }
+    }
+    ```
+
+  # Advantages
+
+  ## Simplicity in Data Handling
+  - The frontend receives all the required data in a single response.
+  - Simplifies frontend code since there's no need to manage caching mechanisms or handle additional data retrieval.
+
+  ## Data Consistency
+  - Ensures that the data displayed is always the most up-to-date from the backend.
+  - Reduces the risk of displaying stale or outdated information.
+
+  ## Ease of Development
+  - Faster development cycles as developers don't need to implement complex caching strategies.
+  - Easier debugging and testing due to the straightforward data flow.
+
+  # Disadvantages
+
+  ## Increased Bandwidth Usage
+  - Transmits more data over the network, potentially leading to higher latency and slower load times.
+  - Can be costly if users are on metered connections or if the application scales to a large number of users.
+
+  ## Higher Server Load
+  - The backend must process and send all data fields, increasing CPU and memory usage.
+  - Can lead to scalability issues as the number of users grows.
+
+  ## Redundant Data Transfer
+  - Repeatedly sending the same data (e.g., department details in multiple employee records) is inefficient.
+  - Wastes resources when the data hasn't changed between requests.
+|
+
+footer: {
+  near: bottom-center
+}
