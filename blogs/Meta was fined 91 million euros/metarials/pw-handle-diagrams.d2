@@ -5,6 +5,14 @@ Client:{
 }
 
 
+Pepper:{
+    label: "Add pepper"
+    icon: "https://cdn-icons-png.flaticon.com/512/184/184524.png"
+    text:|md
+        `get_system_pepper()` → `Pepper1123`
+     |
+}
+
 Salt:{
     label:"Add salt"
     icon: "https://cdn-icons-png.flaticon.com/512/2156/2156550.png"
@@ -18,31 +26,24 @@ Salt:{
      |
 }
 
-Pepper:{
-    label: "Add pepper"
-    icon: "https://cdn-icons-png.flaticon.com/512/184/184524.png"
-    text:|md
-        `get_system_pepper()` → `Pepper1123`
-     |
-}
 secret_manager:{
     label: "Secret manager"
-    icon: "https://www.svgrepo.com/show/375492/secret-manager.svg"
+    icon: https://www.svgrepo.com/show/375492/secret-manager.svg
 }
 
 secret_manager --> pepper.text
 
 
-client --> salt:"\"mysecretpassword\""
+client --> pepper:"\"mysecretpassword\""
 
-salt --> pepper:"\"mysecretpassword\" + \"Salt1123\""
+pepper --> salt:"\"mysecretpassword\" + \"Pepper1123\""
 
 hash_function:{
     label: "Hash function"
     icon: "https://cdn4.iconfinder.com/data/icons/cryptocurrency-bitcoin-and-blockchain/32/cryptocurrency_bitcoin_hashing_hash_function-512.png"
 }
 
-pepper --> hash_function:"\"mysecretpassword\" + \"Salt1123\" + \"Pepper1123\""
+salt --> hash_function:"\"mysecretpassword\" + \"Pepper1123\" + \"Salt1123\""
 
 
 database:{
