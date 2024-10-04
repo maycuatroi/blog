@@ -51,11 +51,22 @@ ai_agent: {
 
     grid-rows: 3
   }
+
+  model_updater: {
+    label: "Model Updater"
+  }
+
+  container_manager: {
+    label: "Container Manager"
+  }
+
   style: {
     multiple: true
   }
 
   camera_reader -> core_ai_service: "Process frame"
+  model_updater -> core_ai_service: "Update AI models"
+  container_manager -> core_ai_service: "Manage containers"
 }
 
 information_pool: {
@@ -117,18 +128,22 @@ user_interface: {
   }
 }
 
+alarm_system: {
+  label: "Còi báo động"
+  icon: https://cdn-icons-png.flaticon.com/128/2014/2014952.png
+}
+
 ai_agent.core_ai_service -> information_pool
 
 information_pool -> logical_components: "Query information to process logic services"
 
 logical_components -> event_message_queue: "Send information to core AI service" {
-  style: {
-    stroke-dash: 3
-  }
 }
 
 master_service -> task_scheduler: "Send task to task scheduler"
 task_scheduler -> ai_agent.core_ai_service: "Set task for AI agent"
+task_scheduler -> ai_agent.model_updater: "Schedule model updates"
+task_scheduler -> ai_agent.container_manager: "Manage container lifecycle"
 
 task_scheduler -> ai_agent.camera_reader: "Assign camera to AI agent"
 
@@ -138,5 +153,6 @@ event_message_queue -> notification_service: "Send event to notification service
 camera -> ai_agent.camera_reader: "Camera IP and port\nRTSP link"
 
 notification_service -> user_interface.alerts: "Send alerts"
+notification_service -> alarm_system: "Trigger alarm"
 user_interface.settings -> master_service: "Configure system"
 information_pool -> user_interface.dashboard: "Display data"
