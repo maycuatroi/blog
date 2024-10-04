@@ -82,12 +82,14 @@ information_pool: {
   face_collection: {
     label: "Object Collection"
   }
+  vector_database: {
+    label: "Vector Database"  
+}
 
   query_sdk: {
     label: "Query SDK"
   }
 
-  grid-rows: 3
 }
 
 event_message_queue: {
@@ -159,9 +161,12 @@ logical_components -> event_message_queue: "Detected events"
 
 ai_agent.core_ai_service -> information_pool
 
-information_pool -> logical_components: "Query information to process logic services"
+logical_components -> information_pool: "Query information to process logic services"
 
-logical_components -> event_message_queue: "Send information to core AI service" {
+logical_components -> task_scheduler: "Send information to core AI service using event message queue" {
+    style: {
+        stroke-dash: 3
+    }
 }
 
 master_service -> task_scheduler: "Send task to task scheduler"
@@ -173,7 +178,7 @@ task_scheduler -> ai_agent.camera_reader: "Assign camera to AI agent"
 
 event_message_queue -> task_scheduler: "Send event to task scheduler"
 information_pool -> event_message_queue: "Send information to event message queue"
-event_message_queue -> notification_service: "Send event to notification service"
+notification_service -> event_message_queue: "Send event to notification service"
 camera -> ai_agent.camera_reader: "Camera IP and port\nRTSP link"
 
 notification_service -> user_interface.alerts: "Send alerts"
@@ -201,4 +206,3 @@ master_service -> inmate_management: "Manage inmates"
 master_service -> cell_management: "Manage cells"
 inmate_management -> information_pool: "Update inmate data"
 cell_management -> information_pool: "Update cell data"
-
