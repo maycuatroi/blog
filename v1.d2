@@ -49,6 +49,10 @@ ai_agent: {
       label: "Image Segmentation Service"
     }
 
+    moving_object_detection_service: {
+      label: "Moving Object Detection Service"
+    }
+
     grid-rows: 3
   }
 
@@ -70,7 +74,7 @@ ai_agent: {
 }
 
 information_pool: {
-  label: "Central Information/Messages Pool"
+  label: "Central Information"
   icon: https://cdn-icons-png.flaticon.com/128/2906/2906274.png
   human_collection: {
     label: "Human Collection"
@@ -108,6 +112,23 @@ logical_components: {
   style: {
     multiple: true
   }
+
+  violence_detection: {
+    label: "Violence Detection"
+  }
+  escape_attempt_detection: {
+    label: "Escape Attempt Detection"
+  }
+  abnormal_behavior_detection: {
+    label: "Abnormal Behavior Detection"
+  }
+  prohibited_item_detection: {
+    label: "Prohibited Item Detection"
+  }
+  uav_detection: {
+    label: "UAV Detection"
+  }
+  grid-rows: 3
 }
 
 notification_service: {
@@ -133,6 +154,9 @@ alarm_system: {
   icon: https://cdn-icons-png.flaticon.com/128/2014/2014952.png
 }
 
+ai_agent.core_ai_service -> logical_components: "Processed data"
+logical_components -> event_message_queue: "Detected events"
+
 ai_agent.core_ai_service -> information_pool
 
 information_pool -> logical_components: "Query information to process logic services"
@@ -156,3 +180,25 @@ notification_service -> user_interface.alerts: "Send alerts"
 notification_service -> alarm_system: "Trigger alarm"
 user_interface.settings -> master_service: "Configure system"
 information_pool -> user_interface.dashboard: "Display data"
+
+inmate_management: {
+  label: "Inmate Management"
+  icon: https://cdn-icons-png.flaticon.com/128/10295/10295696.png
+}
+
+cell_management: {
+  label: "Cell Management"
+  icon: https://cdn-icons-png.flaticon.com/128/1670/1670080.png
+  cell_assignment: {
+    label: "Cell Assignment"
+  }
+  occupancy_tracking: {
+    label: "Occupancy Tracking"
+  }
+}
+
+master_service -> inmate_management: "Manage inmates"
+master_service -> cell_management: "Manage cells"
+inmate_management -> information_pool: "Update inmate data"
+cell_management -> information_pool: "Update cell data"
+
