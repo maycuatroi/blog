@@ -1,0 +1,142 @@
+master_service: {
+  label: "Master Service"
+}
+
+camera: {
+  label: "Camera"
+  icon: https://cdn-icons-png.flaticon.com/128/2642/2642651.png
+  style: {
+    multiple: true
+  }
+}
+
+task_scheduler: {
+  label: "Task Scheduler"
+  icon: https://cdn-icons-png.flaticon.com/128/791/791046.png
+}
+
+ai_agent: {
+  label: "AI Agent Node"
+  icon: https://cdn-icons-png.flaticon.com/128/7733/7733722.png
+
+  camera_reader: {
+    label: "Camera Reader"
+  }
+
+  core_ai_service: {
+    label: "Core AI Engine Service"
+    icon: https://cdn-icons-png.flaticon.com/128/17072/17072114.png
+
+    humandetection_service: {
+      label: "Human Detection Service"
+    }
+
+    object_detection_service: {
+      label: "Object Detection Service"
+    }
+
+    skeleton_detection_service: {
+      label: "Skeleton Detection Service"
+    }
+    mesh_3d_builder_service: {
+      label: "Mesh 3D Builder Service"
+    }
+
+    activity_classification_service: {
+      label: "Activity Classification Service\n(3DCNN)"
+    }
+    image_segmentation_service: {
+      label: "Image Segmentation Service"
+    }
+
+    grid-rows: 3
+  }
+  style: {
+    multiple: true
+  }
+
+  camera_reader -> core_ai_service: "Process frame"
+}
+
+information_pool: {
+  label: "Central Information/Messages Pool"
+  icon: https://cdn-icons-png.flaticon.com/128/2906/2906274.png
+  human_collection: {
+    label: "Human Collection"
+  }
+  face_collection: {
+    label: "Object Collection"
+  }
+
+  query_sdk: {
+    label: "Query SDK"
+  }
+
+  grid-rows: 3
+}
+
+event_message_queue: {
+  icon: https://e7.pngegg.com/pngimages/435/297/png-clipart-kafka-logo-icons-logos-emojis-tech-companies.png
+  label: "Event Message Queue"
+}
+
+logical_components: {
+  label: "Logical Components"
+
+  danger_object_detection: {
+    label: "Danger Object Detection"
+  }
+
+  fall_detection: {
+    label: "Fall Detection"
+  }
+
+  self_harm_detection: {
+    label: "Self-Harm Detection"
+  }
+  style: {
+    multiple: true
+  }
+}
+
+notification_service: {
+  label: "Notification Service"
+}
+
+user_interface: {
+  label: "User Interface"
+  icon: https://cdn-icons-png.flaticon.com/128/1055/1055687.png
+  dashboard: {
+    label: "Dashboard"
+  }
+  alerts: {
+    label: "Alerts"
+  }
+  settings: {
+    label: "Settings"
+  }
+}
+
+ai_agent.core_ai_service -> information_pool
+
+information_pool -> logical_components: "Query information to process logic services"
+
+logical_components -> event_message_queue: "Send information to core AI service" {
+  style: {
+    stroke-dash: 3
+  }
+}
+
+master_service -> task_scheduler: "Send task to task scheduler"
+task_scheduler -> ai_agent.core_ai_service: "Set task for AI agent"
+
+task_scheduler -> ai_agent.camera_reader: "Assign camera to AI agent"
+
+event_message_queue -> task_scheduler: "Send event to task scheduler"
+information_pool -> event_message_queue: "Send information to event message queue"
+event_message_queue -> notification_service: "Send event to notification service"
+camera -> ai_agent.camera_reader: "Camera IP and port\nRTSP link"
+
+notification_service -> user_interface.alerts: "Send alerts"
+user_interface.settings -> master_service: "Configure system"
+information_pool -> user_interface.dashboard: "Display data"
