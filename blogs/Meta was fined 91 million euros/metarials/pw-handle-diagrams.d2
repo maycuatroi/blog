@@ -1,59 +1,49 @@
-
-
-Client:{
+Client: {
     icon: "https://cdn-icons-png.flaticon.com/512/1851/1851160.png"
-}
-
-
-Pepper:{
+  }
+  
+  Pepper: {
     label: "Add pepper"
     icon: "https://cdn-icons-png.flaticon.com/512/184/184524.png"
-    text:|md
-        `get_system_pepper()` → `Pepper1123`
-     |
-}
-
-Salt:{
-    label:"Add salt"
+    text: |md
+      `get_system_pepper()` → `Pepper1123`
+    |
+  }
+  
+  Salt: {
+    label: "Add salt"
     icon: "https://cdn-icons-png.flaticon.com/512/2156/2156550.png"
-    style:{
-        stroke: "#4A6FF3"
-        stroke-width: 2
-        # border-radius: 50
-    }
-    text:|md
-        `generate_unique_salt()` → `Salt1123`
-     |
-}
-
-secret_manager:{
+    text: |md
+      `generate_unique_salt()` → `Salt1123`
+    |
+  }
+  
+  secret_manager: {
     label: "Secret manager"
     icon: https://www.svgrepo.com/show/375492/secret-manager.svg
-}
-
-secret_manager --> pepper.text
-
-
-client --> pepper:"\"mysecretpassword\""
-
-pepper --> salt:"\"mysecretpassword\" + \"Pepper1123\""
-
-hash_function:{
+  }
+  
+  secret_manager -> pepper.text
+  
+  client -> pepper: "\"mysecretpassword\""
+  
+  pepper -> salt: "\"mysecretpassword\" + \"Pepper1123\""
+  
+  hash_function: {
     label: "Hash function"
     icon: "https://cdn4.iconfinder.com/data/icons/cryptocurrency-bitcoin-and-blockchain/32/cryptocurrency_bitcoin_hashing_hash_function-512.png"
-}
-
-salt --> hash_function:"\"mysecretpassword\" + \"Pepper1123\" + \"Salt1123\""
-
-
-database:{
+  }
+  
+  salt -> hash_function: "\"mysecretpassword\" + \"Pepper1123\" + \"Salt1123\""
+  
+  database: {
     label: "Database"
     icon: "https://cdn-icons-png.flaticon.com/512/9850/9850812.png"
-
-}
-
-hash_function --> database:"\"4EXASJDIFAJSDIFJOASJFD\""
-salt --> database:"\"Salt1123\""
-# (** -> **)[*].style.stroke: "#4A6FF3"
-(** -> **)[*].style.stroke-width: 2
-(** -> **)[*].style.animated: true
+  }
+  
+  hash_function -> database: "\"4EXASJDIFAJSDIFJOASJFD\""
+  salt -> database: "\"Salt1123\""
+  # (** -> **)[*].style.stroke: "#4A6FF3"
+  (** -> **)[*].style.stroke-width: 2
+  (** -> **)[*].style.animated: true
+  

@@ -1,0 +1,46 @@
+manager: {
+    icon: "https://cdn-icons-png.flaticon.com/512/3789/3789828.png"
+    label: "Quản lý"
+  }
+  
+  data_driven: {
+    label: "Dựa trên dữ liệu để đưa ra quyết định nhanh hơn và tốt hơn"
+  }
+  
+  data: {
+    label: "Dữ liệu"
+    icon: "https://cdn-icons-png.flaticon.com/128/2168/2168686.png"
+    style.multiple: true
+  }
+
+  
+  advanced_analytics: {
+    label: "Phân tích nâng cao"
+    what_happen: {
+      label: "Chuyện gì đang xảy ra?"
+    }
+  
+    why_happen: {
+      label: "Tại sao nó đang xảy ra?"
+    }
+  
+    what_will_happen: {
+      label: "Chuyện gì sẽ xảy ra?"
+    }
+  
+    business_canvas: {
+      label: "Bức tranh kinh doanh"
+      icon: "https://cdn-icons-png.flaticon.com/128/15860/15860753.png"
+    }
+  
+    what_happen -> business_canvas: "Hiện trạng"
+    why_happen -> business_canvas: "Nguyên nhân"
+    what_will_happen -> business_canvas: "Dự báo"
+  }
+  
+  data -> advanced_analytics: "Thu thập và lưu trữ dữ liệu"
+  advanced_analytics.business_canvas -> manager: "Advanced analytics Insights"
+  
+  manager -> data_driven: "Ra quyết định"
+  
+  (** -> **)[*].style.animated: true
