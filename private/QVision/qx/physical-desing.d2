@@ -1,0 +1,228 @@
+
+khu_vuc_tu_hinh{
+    label: "Khu vực T2"
+    icon: https://cdn-icons-png.flaticon.com/128/619/619153.png
+
+    public_camera{
+        label: "Public Camera"
+    }
+
+
+    roof_holding_room{
+        label: "Mái nhà của phòng"
+        tech_box2{
+            label: "Hộp kĩ thuật 2"
+        } 
+    }
+  
+    
+    spiritual_room{
+        label: "Phòng quản giáo"
+        tech_box1{
+            label: "Hộp kĩ thuật 1"
+        }
+
+        tech_box2{
+            label: "Hộp kĩ thuật 2"
+        }
+    }
+
+    public_camera -> roof_holding_room.tech_box2
+    grid-rows:2
+}
+
+khu_vuc_giam_giu{
+    label: "Khu vực G1"
+    icon: https://cdn-icons-png.flaticon.com/128/619/619153.png
+    note: |md
+    - Phòng 20-30 đối tượng
+    - 1-2 cameras
+         - Khu nữ có 2 camera
+         - Khu nam có 1 camera
+    - Có camera hành lang và sân chơi
+  |
+
+
+    spiritual_room{
+        label: "Phòng quản giáo"
+        tech_box1{
+            label: "Hộp kĩ thuật 1"
+        }
+
+        tech_box2{
+            label: "Hộp kĩ thuật 2"
+        }
+    }
+    public_camera {
+        label: "Public Camera"
+    }
+
+    tech_room{
+        label: "Phòng kĩ thuật"
+        tech_box1{
+            label: "Hộp kĩ thuật 1"
+        }
+
+        tech_box2{
+            label: "Hộp kĩ thuật 2"
+        }
+    }
+
+    public_camera -> tech_room.tech_box1 : {
+        style.stroke-dash: 4
+    }
+    public_camera -> spiritual_room.tech_box1 : {
+        style.stroke-dash: 4
+    }
+
+
+}
+
+khu_vuc_tam_giam{
+    label: "Khu vực T1"
+    icon: https://cdn-icons-png.flaticon.com/128/619/619153.png
+    tech_room{
+        label: "Phòng kĩ thuật"
+    
+        tech_box1{
+            label: "Hộp kĩ thuật 1"
+        }
+    
+        tech_box2{
+            label: "Hộp kĩ thuật 2"
+        }
+    
+        tech_box3{
+            label: "Hộp kĩ thuật 3"
+        }
+    
+    
+    }
+
+
+    hiden_camera{
+        label: "Hdn Camera"
+    }
+    
+    public_camera{
+        label: "Public Camera"
+    }
+
+    hiden_camera -> tech_room.tech_box1
+    public_camera -> tech_room.tech_box2
+}
+
+
+
+center_information_room{
+    label: "Phòng thông tin trung tâm"
+    icon: https://cdn-icons-png.flaticon.com/128/2098/2098439.png
+
+    nas_storage{
+        label: "NAS Storage"
+        icon: https://cdn-icons-png.flaticon.com/128/10633/10633628.png
+    }
+
+    workstation{
+        label: "Workstation"
+        icon: https://cdn-icons-png.flaticon.com/128/2292/2292038.png
+        style.multiple: true
+    }
+
+    user_interface{
+        label: "Giao diện cho người quan sát"
+        icon: https://cdn-icons-png.flaticon.com/128/4009/4009133.png
+        monitor_screens{
+            label: "Màn hình theo dõi gắn tường"
+            icon: https://cdn-icons-png.flaticon.com/128/4685/4685899.png
+            style.multiple: true
+        }
+    
+        alert_screen{
+            label: "Màn hình cảnh báo"
+            icon: https://cdn-icons-png.flaticon.com/128/3067/3067501.png
+            style.multiple: true
+        }
+    
+    }
+ 
+
+
+    internet_switch{
+        label: "Internet Switch"
+        icon: https://cdn-icons-png.flaticon.com/128/984/984448.png
+    }
+
+    internet_switch -> nas_storage
+
+    nas_storage -> workstation : "Read mp4 files"
+    workstation -> user_interface.monitor_screens : "Display video"
+
+
+
+    QVision_system{
+        label: "Hệ thống QVision"
+
+        ai_agent_crew{
+            label: "Main AI Agent Crew"
+            style.multiple: true
+            icon: https://cdn-icons-png.flaticon.com/128/13762/13762847.png
+            note: |md
+            - 40 AI boxes Jetson Orin Nano
+            - ... (TBD) GPU Servers
+            |
+        }
+        server_master_services{
+            label: "Server Master Services"
+            icon: https://cdn-icons-png.flaticon.com/128/2703/2703593.png
+        }
+    
+        Large_GPU_servers{
+            label: "Large GPU Servers"
+            icon: https://cdn-icons-png.flaticon.com/128/4617/4617782.png
+            style.multiple: true
+            note: |md
+            - Server sử dụng để training model, đảm bảo độ an toàn dữ liệu
+            - Sử dụng để deploy hệ thống backup (secondary system)
+            |
+        }
+        
+        qvision_nas{
+            label: "NAS QVision"
+            icon: https://cdn-icons-png.flaticon.com/128/10633/10633628.png
+        }
+        server_master_services -> ai_agent_crew: "Control boxes"
+        ai_agent_crew -> qvision_nas: "Lưu trữ video bằng chứng"
+        server_master_services -> qvision_nas: "Lấy video từ NAS"
+
+        style.stroke-width: 4
+        style.stroke: purple
+    }
+
+    internet_switch -> QVision_system.ai_agent_crew : {
+        label: "Lấy video stream theo camera ID"
+        style{
+            stroke-dash: 4
+            stroke: purple
+            stroke-width: 4
+            font-size: 30
+            font-color: purple
+            animated: true
+        }
+        
+    }
+    QVision_system.server_master_services -> user_interface.alert_screen : {
+        style.stroke: blue
+    }
+
+}
+
+
+khu_vuc_tu_hinh.roof_holding_room.tech_box2 -> center_information_room.internet_switch
+
+
+khu_vuc_tam_giam.tech_room.tech_box1 -> center_information_room.internet_switch
+khu_vuc_tam_giam.tech_room.tech_box2 -> center_information_room.internet_switch
+
+khu_vuc_giam_giu.spiritual_room -> center_information_room.internet_switch
+khu_vuc_giam_giu.tech_room -> center_information_room.internet_switch
