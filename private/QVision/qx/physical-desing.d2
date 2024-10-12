@@ -1,118 +1,111 @@
+thuc_dia {
+    label: "Thực địa"
 
-khu_vuc_tu_hinh{
-    label: "Khu vực T2"
-    icon: https://cdn-icons-png.flaticon.com/128/619/619153.png
+    khu_vuc_tu_hinh {
+        label: "Khu vực T2"
+        icon: https://cdn-icons-png.flaticon.com/128/619/619153.png
 
-    public_camera{
-        label: "Public Camera"
-    }
-
-
-    roof_holding_room{
-        label: "Mái nhà của phòng"
-        tech_box2{
-            label: "Hộp kĩ thuật 2"
-        } 
-    }
-  
-    
-    spiritual_room{
-        label: "Phòng quản giáo"
-        tech_box1{
-            label: "Hộp kĩ thuật 1"
+        public_camera {
+            label: "Public Camera"
         }
 
-        tech_box2{
-            label: "Hộp kĩ thuật 2"
+        roof_holding_room {
+            label: "Mái nhà của phòng"
+            tech_box2 {
+                label: "Hộp kĩ thuật 2"
+            }
+        }
+
+        spiritual_room {
+            label: "Phòng quản giáo"
+            tech_box1 {
+                label: "Hộp kĩ thuật 1"
+            }
+
+            tech_box2 {
+                label: "Hộp kĩ thuật 2"
+            }
+        }
+
+        public_camera -> roof_holding_room.tech_box2
+        grid-rows: 2
+    }
+
+    khu_vuc_giam_giu {
+        label: "Khu vực G1"
+        icon: https://cdn-icons-png.flaticon.com/128/619/619153.png
+        note: |md
+        - Phòng 20-30 đối tượng
+        - 1-2 cameras
+             - Khu nữ có 2 camera
+             - Khu nam có 1 camera
+        - Có camera hành lang và sân chơi
+        |
+
+        spiritual_room {
+            label: "Phòng quản giáo"
+            tech_box1 {
+                label: "Hộp kĩ thuật 1"
+            }
+
+            tech_box2 {
+                label: "Hộp kĩ thuật 2"
+            }
+        }
+        public_camera {
+            label: "Public Camera"
+        }
+
+        tech_room {
+            label: "Phòng kĩ thuật"
+            tech_box1 {
+                label: "Hộp kĩ thuật 1"
+            }
+
+            tech_box2 {
+                label: "Hộp kĩ thuật 2"
+            }
+        }
+
+        public_camera -> tech_room.tech_box1 : {
+            style.stroke-dash: 4
+        }
+        public_camera -> spiritual_room.tech_box1 : {
+            style.stroke-dash: 4
         }
     }
 
-    public_camera -> roof_holding_room.tech_box2
-    grid-rows:2
+    khu_vuc_tam_giam {
+        label: "Khu vực T1"
+        icon: https://cdn-icons-png.flaticon.com/128/619/619153.png
+        tech_room {
+            label: "Phòng kĩ thuật"
+
+            tech_box1 {
+                label: "Hộp kĩ thuật 1"
+            }
+
+            tech_box2 {
+                label: "Hộp kĩ thuật 2"
+            }
+
+            tech_box3 {
+                label: "Hộp kĩ thuật 3"
+            }
+        }
+
+        hiden_camera {
+            label: "Hdn Camera"
+        }
+
+        public_camera {
+            label: "Public Camera"
+        }
+
+        hiden_camera -> tech_room.tech_box1
+        public_camera -> tech_room.tech_box2
+    }
 }
-
-khu_vuc_giam_giu{
-    label: "Khu vực G1"
-    icon: https://cdn-icons-png.flaticon.com/128/619/619153.png
-    note: |md
-    - Phòng 20-30 đối tượng
-    - 1-2 cameras
-         - Khu nữ có 2 camera
-         - Khu nam có 1 camera
-    - Có camera hành lang và sân chơi
-  |
-
-
-    spiritual_room{
-        label: "Phòng quản giáo"
-        tech_box1{
-            label: "Hộp kĩ thuật 1"
-        }
-
-        tech_box2{
-            label: "Hộp kĩ thuật 2"
-        }
-    }
-    public_camera {
-        label: "Public Camera"
-    }
-
-    tech_room{
-        label: "Phòng kĩ thuật"
-        tech_box1{
-            label: "Hộp kĩ thuật 1"
-        }
-
-        tech_box2{
-            label: "Hộp kĩ thuật 2"
-        }
-    }
-
-    public_camera -> tech_room.tech_box1 : {
-        style.stroke-dash: 4
-    }
-    public_camera -> spiritual_room.tech_box1 : {
-        style.stroke-dash: 4
-    }
-
-
-}
-
-khu_vuc_tam_giam{
-    label: "Khu vực T1"
-    icon: https://cdn-icons-png.flaticon.com/128/619/619153.png
-    tech_room{
-        label: "Phòng kĩ thuật"
-    
-        tech_box1{
-            label: "Hộp kĩ thuật 1"
-        }
-    
-        tech_box2{
-            label: "Hộp kĩ thuật 2"
-        }
-    
-        tech_box3{
-            label: "Hộp kĩ thuật 3"
-        }
-    
-    
-    }
-
-
-    hiden_camera{
-        label: "Hdn Camera"
-    }
-    
-    public_camera{
-        label: "Public Camera"
-    }
-
-    hiden_camera -> tech_room.tech_box1
-    public_camera -> tech_room.tech_box2
-}
-
-
 
 center_information_room{
     label: "Phòng thông tin trung tâm"
@@ -218,11 +211,11 @@ center_information_room{
 }
 
 
-khu_vuc_tu_hinh.roof_holding_room.tech_box2 -> center_information_room.internet_switch
+thuc_dia.khu_vuc_tu_hinh.roof_holding_room.tech_box2 -> center_information_room.internet_switch
 
 
-khu_vuc_tam_giam.tech_room.tech_box1 -> center_information_room.internet_switch
-khu_vuc_tam_giam.tech_room.tech_box2 -> center_information_room.internet_switch
+thuc_dia.khu_vuc_tam_giam.tech_room.tech_box1 -> center_information_room.internet_switch
+thuc_dia.khu_vuc_tam_giam.tech_room.tech_box2 -> center_information_room.internet_switch
 
-khu_vuc_giam_giu.spiritual_room -> center_information_room.internet_switch
-khu_vuc_giam_giu.tech_room -> center_information_room.internet_switch
+thuc_dia.khu_vuc_giam_giu.spiritual_room -> center_information_room.internet_switch
+thuc_dia.khu_vuc_giam_giu.tech_room -> center_information_room.internet_switch
