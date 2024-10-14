@@ -1,0 +1,55 @@
+human_activity_recognition{
+    label: "Human activity recognition\nUnified Keypoint-based Action Recognition Framework via Structured Keypoint Pooling"
+
+   
+    keypoint_detection: {
+        label: "Keypoint Detection (Human Skeletons and Object Keypoints)"
+    }
+    
+    point_cloud: {
+        label: "Represent Keypoints as 3D Point Cloud"
+    }
+    
+    structured_pooling: {
+        label: "Structured Keypoint Pooling"
+    }
+    
+    feature_extraction: {
+        label: "Feature Extraction using MLP and Pooling"
+    }
+    
+    feature_aggregation: {
+        label: "Feature Aggregation"
+    }
+    
+    pooling_switch: {
+        label: "Pooling-Switching Trick"
+        note: |md
+            - Training phase: Weakly Supervised Training
+            - Inference phase: Person-wise and Frame-wise Action Localization
+        |
+        label.near: top-center
+    }
+
+    action_localization: {
+        label: "Person-wise and Frame-wise Action Localization"
+    }
+    
+    final_recognition: {
+        label: "Final Action Recognition"
+    }
+
+   
+    
+   
+    keypoint_detection -> point_cloud
+    point_cloud -> structured_pooling
+    structured_pooling -> feature_extraction
+    feature_extraction -> feature_aggregation
+    feature_aggregation -> pooling_switch
+    pooling_switch -> action_localization
+    action_localization -> final_recognition
+    
+    style.font-size: 12
+}
+

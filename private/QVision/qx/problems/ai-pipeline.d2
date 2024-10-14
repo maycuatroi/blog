@@ -1,0 +1,222 @@
+classes: {
+
+    output: {
+        style: {
+            stroke: blue
+        }
+        label.near: bottom-center
+    }
+    module: {
+        style: {
+            border-radius: 999
+        }
+    }
+    if-else: {
+        shape: diamond
+        style: {
+            fill: GhostWhite
+        }
+    }
+
+    met_requirement: {
+        style: {
+            fill: gold
+            font-size: 12
+        }
+        label.near: bottom-center
+    }
+
+    gpu_module: {
+        style: {
+            fill: LightGreen
+            border-radius: 999
+        }
+    }
+
+}
+
+input_frame_sequence{
+    label: "🖼️ Input frame sequence"
+    style.multiple: true
+    # near: top-center
+}
+
+human_detection{
+    label: "🧍 Human detection"
+    class: gpu_module
+}
+
+human_bounding_box{
+    label: "Human bounding box"
+    icon: https://cdn-icons-png.flaticon.com/128/6302/6302663.png
+    class: output
+    style.multiple:true
+}
+
+human_count{
+    label: "Human count"
+    class: module
+}
+
+
+blood_detection{
+    label: "🩸🔥 Blood and Fire detection"
+    class: gpu_module
+    note: |md Phát hiện có sự xuất hiện của máu, lửa trên ảnh, không cần phát hiện vị trí cụ thể|
+}
+
+
+
+uniform_classification{
+    label: "Uniform classification"
+    class: gpu_module
+}
+
+bounding_box_with_type{
+    label: "Bounding box with type"
+    icon: https://cdn-icons-png.flaticon.com/128/6302/6302663.png
+    class: output
+    style.multiple: true
+}
+
+afk_detection{
+    label: "AFK detection"
+    class: module
+}
+
+
+
+met_requirement{
+    label: "Met requirement"
+    
+    anomaly_afk{
+        label: "Anomaly AFK"
+        icon: https://cdn-icons-png.flaticon.com/128/3094/3094837.png
+        class: met_requirement
+    }
+
+    detect_blood_anomaly{
+        label: "🩸🔥 Detect blood and fire anomaly"
+        icon: https://cdn-icons-png.flaticon.com/128/967/967119.png
+        class: met_requirement
+    }
+
+    detect_anomaly_group{
+        label: "Detect anomaly group"
+        icon: https://cdn-icons-png.flaticon.com/128/3588/3588885.png
+        class: met_requirement
+    }
+    
+    violent_behavior: {
+        label: "Violent Behavior"
+        icon: https://cdn-icons-png.flaticon.com/128/2983/2983413.png
+        note: |md
+            ### Hành động bạo lực
+            - Đánh nhau, vật nhau
+            - Khống chế, tấn công cán bộ quản giáo
+            - Mang vũ khí (hung khí) tới trước cổng cơ quan
+            - Các hành động bạo lực nói chung
+        |
+        class: met_requirement
+    }
+
+    self_harm_and_injury: {
+        label: "Self-Harm and Injury"
+        icon: https://cdn-icons-png.flaticon.com/128/2983/2983413.png
+        class: met_requirement
+        note: |md
+            ### Tự tử, tự thương
+            - Đập đầu vào tường
+            - Treo cổ
+            - Cắt cổ, cổ tay, cổ chân
+            - Hành động trèo lên cửa hoặc các vị trí cao nguy hiểm
+            - Phát hiện hành động ngã, đột quỵ.
+        |
+    }
+
+    anomalous_behavior: {
+        label: "Anomalous behavior"
+        icon: https://cdn-icons-png.flaticon.com/128/2983/2983413.png
+        class: met_requirement
+        note: |md
+            ### Hành động bất thường
+            - Xé quần áo, chăn màn
+            - Rút chỉ, se dây dài
+            - Mài các vật sắc nhọn
+            - Hút thuốc
+        |
+    }
+    escape_shackles: {
+        label: "Thoát khỏi cùm bất thường"
+        icon: https://cdn-icons-png.flaticon.com/128/4458/4458758.png
+        class: met_requirement
+    }
+
+    civilian_clothing: {
+        label: ""
+        icon: https://cdn-icons-png.flaticon.com/128/2331/2331716.png
+        class: met_requirement
+        note: |md
+            ### Mặc dân sự đi lại trong:
+             - Hành lang
+             - Khu giam
+             - Trường chòi
+             - Cổng khu giam
+        |
+    }
+
+    detect_weapons: {
+        label: "Detect weapons"
+        icon: https://cdn-icons-png.flaticon.com/128/855/855023.png
+        class: met_requirement
+    }
+    # near: bottom-center
+}
+
+
+detect_escape_shackles:{
+    label: "Detect escape shackles"
+    class: module
+}
+
+weapons_detection: {
+    label: "Weapons detection"
+    class: gpu_module
+}
+
+civilian_clothing_and_region_lockdown: {
+    label: "Mặc dân sự trong khu vực cấm"
+    class: module
+}
+
+human_activity_recognition : @human-activity-recognition.human_activity_recognition
+input_frame_sequence -> human_detection -> human_bounding_box
+bounding_box_with_type -> human_count -> met_requirement.detect_anomaly_group
+bounding_box_with_type -> human_activity_recognition.keypoint_detection
+
+input_frame_sequence -> blood_detection -> met_requirement.detect_blood_anomaly
+human_bounding_box -> uniform_classification
+uniform_classification -> bounding_box_with_type: "Phân loại bounding boxes dựa theo thông tin vị trí camera và uniform"
+
+human_activity_recognition.keypoint_detection -> afk_detection -> met_requirement.anomaly_afk
+human_activity_recognition.final_recognition -> met_requirement.violent_behavior
+human_activity_recognition.final_recognition -> met_requirement.self_harm_and_injury
+human_activity_recognition.final_recognition -> met_requirement.anomalous_behavior
+
+bounding_box_with_type -> detect_escape_shackles -> met_requirement.escape_shackles
+bounding_box_with_type -> weapons_detection -> met_requirement.detect_weapons
+bounding_box_with_type -> civilian_clothing_and_region_lockdown -> met_requirement.civilian_clothing
+
+
+legend{
+    label: "Chú thích"
+    gpu_module: "GPU Module"
+    module: "CPU Module"
+    met_requirement: "Met requirement"
+    near: bottom-right
+
+
+    gpu_module.class: gpu_module
+    module.class: module
+    met_requirement.class: met_requirement
+}
