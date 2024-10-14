@@ -1,0 +1,165 @@
+classes: {
+    ai_model: {
+      style: {
+        stroke-width: 2
+        fill: "#44C7B1"
+        shadow: true
+        border-radius: 5
+      }
+    }
+  
+  }
+
+
+zone_t1: {
+  label: "Khu vực T1"
+
+  inmate_area: {
+    label: "Khu vực học viên"
+
+    in_room: {
+      label: "Trong buồng"
+    }
+
+    sun_bathing_area: {
+      label: "Sân tắm nắng"
+    }
+  }
+
+  adapting_area: {
+    label: "Vùng đệm"
+  }
+
+  corridor: {
+    label: "Hành lang"
+  }
+
+  grid-rows: 3
+}
+
+injury: {
+  label: "Hành động tự thương, bị thương nói chung"
+  falling_behavior: {
+    label: "Hành vi ngã (đột quỵ)"
+  }
+
+  self_harm_suicide: {
+    label: "Hành động tự thương: treo cổ tự tử"
+  }
+
+  cutting_self: {
+    label: "Cắt vào cổ, cứa cổ tay, cổ chân"
+  }
+  blood_identification: {
+    label: "Nhận dạng vết máu, máu chảy nền nhà"
+  }
+  climbing_fall: {
+    label: "Trèo lên cửa, vị trí trên cao cắm đầu xuống đất"
+  }
+  self_harm_wall: {
+    label: "Hành động tự thương: đập đầu vào tường"
+  }
+
+  sleeping_over_2h: {
+    label: "Các đối tượng nằm ngủ thời gian trên 2h không cử động"
+  }
+
+  
+  style: {
+    stroke-dash: 5
+  }
+
+  grid-rows: 4
+}
+
+violence: {
+  label: "Bạo lực"
+  violence_with_weapon: {
+    label: "Bạo lực (có hung khí)"
+  }
+  fighting: {
+    label: "Đánh nhau, vật nhau"
+  }
+  control_attack_staff: {
+    label: "Khống chế tấn công cán bộ quản giáo"
+  }
+
+  control_gate_staff: {
+    label: "Khống chế cán bộ gác cổng cơ quan, cổng khu giam (gương mặt lạ xâm nhập khu vực cấm)"
+  }
+  style: {
+    stroke-dash: 5
+  }
+
+  grid-rows: 3
+}
+
+anomaly: {
+  label: "Hành vi bất thường"
+
+  sharpening_objects: {
+    label: "Mài các vật sắc nhọn"
+  }
+
+  fire_present: {
+    label: "Có lửa"
+  }
+  skipping_meals: {
+    label: "Bỏ bữa không ăn"
+  }
+  smoking: {
+    label: "Hút thuốc"
+  }
+
+  sawing_shackles: {
+    label: "Cưa cùm"
+  }
+
+  gathering_crowd: {
+    label: "Tụ tập đông người"
+  }
+  thread_spinning: {
+    label: "Rút chỉ, se dây dài"
+  }
+
+  tearing_clothes: {
+    label: "Xé quần áo, chăn màn"
+  }
+
+  ladder_climbing: {
+    label: "Bắc thang, leo trèo qua tường rào bảo vệ Trại"
+  }
+
+  weapon_at_gate: {
+    label: "Mang vũ khí (hung khí) tới trước cổng cơ quan"
+  }
+
+  civil_clothes_corridor: {
+    label: "Mặc dân sự đi lại trong hành lang; trong khu giam; trong trường chòi; qua cổng khu giam"
+  }
+
+  breaking_tools: {
+    label: "Đập vỡ dụng cụ"
+  }
+
+  restless_at_night: {
+    label: "Tới giờ ngủ mà có 1 người đi lại nhiều lần"
+  }
+
+  style: {
+    stroke-dash: 5
+  }
+  grid-rows: 5
+}
+
+zone_t1.inmate_area -> injury
+zone_t1.inmate_area -> anomaly
+zone_t1 -> violence
+
+
+
+human_detection: {
+  label: "Phát hiện người"
+}
+
+human_detection.class: ai_model
