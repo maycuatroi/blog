@@ -1,0 +1,260 @@
+classes: {
+    sql_lite: {
+      label: "SQL Lite"
+      icon: https://static-00.iconduck.com/assets.00/sqlite-icon-2048x909-7nkrc3bm.png
+      label.near: bottom-center
+    }
+  
+    mysql: {
+      label: "MySQL"
+      icon: https://cdn-icons-png.flaticon.com/512/5968/5968313.png
+      label.near: bottom-center
+    }
+  
+    camera: {
+      label: "Camera"
+      icon: https://icons.terrastruct.com/essentials/012-video%20camera.svg
+      label.near: bottom-center
+    }
+  
+    redis: {
+      label: "Redis"
+      icon: https://cdn4.iconfinder.com/data/icons/redis-2/1451/Untitled-2-512.png
+      label.near: bottom-center
+    }
+  
+    minio: {
+      label: "Minio"
+      icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz13CCo_MMe1jMVfNWOb4xt5uW8lzYgVfehQ&s
+      label.near: bottom-center
+    }
+  
+    kafka: {
+      label: "Kafka"
+      icon: https://www.svgrepo.com/show/353951/kafka-icon.svg
+      label.near: bottom-center
+    }
+  
+    kibana: {
+      label: "Kibana"
+      icon: https://static-00.iconduck.com/assets.00/kibana-icon-1537x2048-476gnmfc.png
+      label.near: bottom-center
+    }
+    elasticsearch: {
+      label: "Elasticsearch"
+      icon: https://static-00.iconduck.com/assets.00/elasticsearch-icon-1839x2048-g9zblqim.png
+      label.near: bottom-center
+    }
+  }
+  
+  camera: {
+    class: camera
+    style.multiple: true
+    near: center-left
+  }
+  
+  ai_box: {
+    label: "AI Box"
+    style.multiple: true
+  
+    ai_services: {
+      label: "Tác vụ AI tại biên (Process near real-time)"
+      style.multiple: true
+      top: 0
+      left: 0
+      width: 379
+      height: 66
+    }
+  
+    sql_lite: {
+      class: sql_lite
+      top: 135
+      left: 258
+      width: 121
+      height: 135
+    }
+  
+    mini_portal: {
+      label: "Mini Portal"
+      top: 135
+      left: 0
+      width: 115
+      height: 135
+    }
+  
+    communication_service: {
+      label: "Communication\nService"
+      top: 0
+      left: 538
+      width: 160
+      height: 270
+      label.near: center-center
+    }
+  
+    mini_portal -> sql_lite
+    mini_portal -> ai_services
+    ai_services -> sql_lite
+    ai_services -> communication_service
+    communication_service -> sql_lite: "Cập nhật config"
+    top: 0
+    left: 150
+    width: 852
+    height: 662
+  }
+  
+  platform: {
+    label: QVision Platform
+  
+    kafka: {
+      class: kafka
+      top: 183
+      left: 0
+      width: 168
+      height: 92
+    }
+  
+    redis: {
+      class: redis
+      top: 0
+      left: 0
+      width: 168
+      height: 92
+    }
+  
+    minio: {
+      class: minio
+      top: 389
+      left: 0
+      width: 168
+      height: 92
+    }
+  
+    virtualization_system: {
+      label: "Hệ thống ảo hóa"
+      consumer_services: {
+        label: "Consumer Services"
+        style.multiple: true
+        top: 200
+        left: 5
+        width: 271
+        height: 66
+      }
+      web_application: {
+        label: "Web Application"
+        style.multiple: true
+        width: 271
+        height: 120
+        top: 0
+        left: 0
+      }
+  
+      ai_services: {
+        label: "Hệ thống AI nặng"
+        style.multiple: true
+        top: 329
+        left: 0
+        width: 271
+        height: 66
+      }
+      top: 0
+      left: 230
+      width: 361
+      height: 481
+    }
+  
+    mysql: {
+      class: mysql
+      top: 0
+      left: 666
+      width: 126
+      height: 109
+    }
+  
+    elasticsearch: {
+      class: elasticsearch
+      top: 213
+      left: 666
+      width: 126
+      height: 89
+    }
+  
+    kibana: {
+      class: kibana
+      top: 389
+      left: 666
+      width: 126
+      height: 126
+    }
+  
+    virtualization_system.web_application -> minio
+    virtualization_system.web_application <-> kafka
+    virtualization_system.web_application <-> redis
+    virtualization_system.web_application -> mysql
+    virtualization_system.web_application -> elasticsearch
+  
+    virtualization_system.consumer_services <-> kafka
+    virtualization_system.consumer_services -> mysql
+    virtualization_system.consumer_services -> elasticsearch
+    kibana -> elasticsearch
+    top: 0
+    left: 1218
+    width: 940
+    height: 663
+  }
+  
+  desktop_app: {
+    label: "Desktop App"
+    style.multiple: true
+  
+    desktop_app: {
+      label: "Desktop App"
+      top: 0
+      left: 0
+      width: 759
+      height: 92
+    }
+    sql_lite: {
+      class: sql_lite
+      top: 0
+      left: 901
+      width: 962
+      height: 92
+    }
+  
+    desktop_app -> sql_lite
+    top: 752
+    left: 150
+    width: 2011
+    height: 250
+  }
+  
+  ai_box.communication_service <-> platform.kafka
+  
+  camera -> ai_box.ai_services: "Đọc bằng RTSP"
+  
+  camera -> desktop_app.desktop_app: "Đọc bằng RTSP"
+  
+  ai_box.communication_service <-> platform.redis
+  desktop_app.desktop_app <-> platform.redis
+  
+  desktop_app.desktop_app -> platform.minio
+  
+  ai_box.communication_service -> platform.minio
+  
+  (** <-> platform.redis)[*]: {
+    style.stroke: red
+    style.animated: false
+  }
+  
+  (** <-> platform.kafka)[*]: {
+    style.stroke: blue
+  }
+  
+  (camera -> **)[*]: {
+    style.stroke: orange
+  }
+  
+  (** -> platform.minio)[*]: {
+    style.stroke: green
+  }
+  

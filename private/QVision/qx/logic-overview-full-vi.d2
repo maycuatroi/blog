@@ -1,148 +1,202 @@
 direction: down
 classes: {
+  output: {
+    style: {
+      stroke: blue
+    }
+  }
+  module: {
+    style: {
+      border-radius: 999
+    }
+  }
+  if-else: {
+    shape: diamond
+    style: {
+      fill: GhostWhite
+    }
+  }
 
-    output: {
-        style: {
-            stroke: blue
-        }
+  met_requirement: {
+    style: {
+      fill: gold
+      font-size: 20
     }
-    module: {
-        style: {
-            border-radius: 999
-        }
-    }
-    if-else: {
-        shape: diamond
-        style: {
-            fill: GhostWhite
-        }
-    }
+  }
 
-    met_requirement: {
-        style: {
-            fill: gold
-            font-size: 12
-        }
+  gpu_module: {
+    style: {
+      fill: LightGreen
+      border-radius: 999
     }
-
-    gpu_module: {
-        style: {
-            fill: LightGreen
-            border-radius: 999
-        }
-    }
-
+  }
 }
 
-input_frame_sequence{
-    label: "Luồng dữ liệu camera"
-    style.multiple: true
-    near: top-center
-    style:{
-        fill: orange
-    }
+input_frame_sequence: {
+  label: "Luồng dữ liệu camera"
+  style.multiple: true
+  near: top-center
+  style: {
+    fill: orange
+  }
+  top: 0
+  left: 1241
 }
 
-human_detection{
-    label: "Phát hiện người"
-    class: gpu_module
+human_detection: {
+  label: "Phát hiện người"
+  class: gpu_module
+  top: 103
+  left: 1256
+  width: 344
+  height: 82
 }
 
-human_bounding_box{
-    label: "Toạ độ người"
-    class: output
-    style.multiple:true
+human_bounding_box: {
+  label: "Vị trí người"
+  class: output
+  style.multiple: true
+  top: 233
+  left: 1256
+  width: 344
+  height: 82
 }
 
-human_count{
-    label: "Đếm số người"
-    class: module
+human_count: {
+  label: "Đếm số người"
+  class: module
+  top: 1230
+  left: 828
 }
 
-
-blood_detection{
-    label: "Tác vụ phát hiện vật thể bất thường"
-    class: gpu_module
+blood_detection: {
+  label: "Tác vụ phát hiện vật thể bất thường"
+  class: gpu_module
 }
 
-
-
-uniform_classification{
-    label: "Phân loại quân phục"
-    class: gpu_module
+uniform_classification: {
+  label: "Phân loại quân phục"
+  class: gpu_module
+  top: 378
+  left: 1256
+  width: 344
+  height: 82
 }
 
-bounding_box_with_type{
-    label: "Toạ độ người và loại quân phục"
-    class: output
-    style.multiple: true
+bounding_box_with_type: {
+  label: "Vị trí người và loại quân phục"
+  class: output
+  style.multiple: true
+  top: 519
+  left: 1197
 }
 
-afk_detection{
-    label: "Tác vụ phát hiện bất động dị thường"
-    class: module
+afk_detection: {
+  label: "Tác vụ phát hiện bất động dị thường"
+  class: module
 }
 
+met_requirement: {
+  label: "Phát hiện hành vi bất thường"
 
+  anomaly_afk: {
+    label: "Bất động dị thường"
+    class: met_requirement
+    width: 502
+    height: 61
+    top: 255
+    left: 0
+  }
 
-met_requirement{
-    label: "Đáp ứng mục tiêu"
-    
-    anomaly_afk{
-        label: "Phát hiện bất động dị thường"
-        class: met_requirement
-    }
+  detect_blood_anomaly: {
+    label: "Các đối tượng vật thể bất thường"
+    class: met_requirement
+    top: 428
+    left: 0
+    width: 502
+    height: 61
+  }
 
-    detect_blood_anomaly{
-        label: "Phát hiện các đối tượng vật thể bất thường"
-        class: met_requirement
-    }
+  detect_anomaly_group: {
+    label: "Phát hiện tụ tập bất thường"
+    class: met_requirement
+    top: 342
+    left: 0
+    width: 502
+    height: 61
+  }
 
-    detect_anomaly_group{
-        label: "Phát hiện tụ tập bất thường"
-        class: met_requirement
-    }
-    
-    violent_behavior: {
-        label: "Phát hiện hành vi bạo lực"
-        class: met_requirement
-    }
+  violent_behavior: {
+    label: "Hành vi bạo lực"
+    class: met_requirement
+    width: 502
+    height: 61
+    top: 0
+    left: 0
+  }
 
-    self_harm_and_injury: {
-        label: "Phát hiện hành vi tự thương, tự sát"
-        class: met_requirement
-    }
+  self_harm_and_injury: {
+    label: "Hành vi tự thương, tự sát"
+    class: met_requirement
+    width: 502
+    height: 61
+    top: 90
+    left: 0
+  }
 
-    anomalous_behavior: {
-        label: "Phát hiện hành vi bất thường"
-        class: met_requirement
-    }
+  anomalous_behavior: {
+    label: "Hành vi bất thường"
+    class: met_requirement
+    top: 174
+    left: 0
+    width: 502
+    height: 61
+  }
 
-    civilian_clothing: {
-        label: "Phát hiện người lạ trong khu vực cấm"
-        class: met_requirement
-    }
+  civilian_clothing: {
+    label: "Người lạ trong khu vực cấm"
+    class: met_requirement
+    width: 502
+    height: 61
+    top: 516
+    left: 0
+  }
 
-    detect_weapons: {
-        label: "Phát hiện vũ khí"
-        class: met_requirement
-    }
+  detect_weapons: {
+    label: "Phát hiện vũ khí"
+    class: met_requirement
+    width: 502
+    height: 61
+    top: 608
+    left: 0
+  }
+  top: 819
+  left: 1103
+  width: 650
+  height: 789
 }
-
 
 weapons_detection: {
-    label: "Phát hiện vũ khí"
-    class: gpu_module
+  label: "Phát hiện vũ khí"
+  class: gpu_module
+  top: 1467
+  left: 2558
 }
 
 civilian_clothing_and_region_lockdown: {
-    label: "Mặc dân sự trong khu vực cấm"
-    class: module
+  label: "Mặc dân sự trong khu vực cấm"
+  class: module
+  top: 1353
+  left: 586
 }
 
-human_activity_recognition :{
-    label: "Nhận diện hành vi nâng cao"
-    class: gpu_module
+human_activity_recognition: {
+  label: "Nhận diện hành vi nâng cao"
+  class: gpu_module
+  top: 670
+  left: 1197
+  width: 462
+  height: 82
 }
 input_frame_sequence -> human_detection -> human_bounding_box
 bounding_box_with_type -> human_count -> met_requirement.detect_anomaly_group
@@ -160,33 +214,37 @@ human_activity_recognition -> met_requirement.anomalous_behavior
 bounding_box_with_type -> weapons_detection -> met_requirement.detect_weapons
 bounding_box_with_type -> civilian_clothing_and_region_lockdown -> met_requirement.civilian_clothing
 
+legend: {
+  label: "Chú thích"
+  gpu_module: "Tác vụ AI nặng"
+  module: "Tác vụ AI nhẹ"
+  met_requirement: "Phát hiện hành vi bất thường"
 
-legend{
-    label: "Chú thích"
-    gpu_module: "Tác vụ AI nặng"
-    module: "Tác vụ AI nhẹ"
-    met_requirement: "Đáp ứng mục tiêu"
-    near: bottom-right
-
-
-    gpu_module.class: gpu_module
-    module.class: module
-    met_requirement.class: met_requirement
+  gpu_module.class: gpu_module
+  module.class: module
+  met_requirement.class: met_requirement
+  top: 935
+  left: 0
+  grid-rows: 3
 }
 
-
 vlm_double_check: {
-    label: "Sử dụng mô hình video lớn để tăng cường độ chính xác của dự đoán"
-    class: gpu_module
+  label: "Sử dụng mô hình video lớn để tăng cường độ chính xác của dự đoán"
+  class: gpu_module
+  top: 1689
+  left: 937
+  width: 983
+  height: 161
 }
 
 notification: {
-    label: "Gửi thông báo"
-    class: module
-    style:{
-        fill: orange
-    }
-    near: bottom-center
+  label: "Gửi thông báo"
+  class: module
+  style: {
+    fill: orange
+  }
 }
 
-met_requirement -> vlm_double_check -> notification
+met_requirement <-> vlm_double_check -> notification
+
+**.style.font-size: 30
