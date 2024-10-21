@@ -1,0 +1,192 @@
+direction: down
+classes: {
+
+    output: {
+        style: {
+            stroke: blue
+        }
+    }
+    module: {
+        style: {
+            border-radius: 999
+        }
+    }
+    if-else: {
+        shape: diamond
+        style: {
+            fill: GhostWhite
+        }
+    }
+
+    met_requirement: {
+        style: {
+            fill: gold
+            font-size: 12
+        }
+    }
+
+    gpu_module: {
+        style: {
+            fill: LightGreen
+            border-radius: 999
+        }
+    }
+
+}
+
+input_frame_sequence{
+    label: "Luồng dữ liệu camera"
+    style.multiple: true
+    near: top-center
+    style:{
+        fill: orange
+    }
+}
+
+human_detection{
+    label: "Phát hiện người"
+    class: gpu_module
+}
+
+human_bounding_box{
+    label: "Toạ độ người"
+    class: output
+    style.multiple:true
+}
+
+human_count{
+    label: "Đếm số người"
+    class: module
+}
+
+
+blood_detection{
+    label: "Tác vụ phát hiện vật thể bất thường"
+    class: gpu_module
+}
+
+
+
+uniform_classification{
+    label: "Phân loại quân phục"
+    class: gpu_module
+}
+
+bounding_box_with_type{
+    label: "Toạ độ người và loại quân phục"
+    class: output
+    style.multiple: true
+}
+
+afk_detection{
+    label: "Tác vụ phát hiện bất động dị thường"
+    class: module
+}
+
+
+
+met_requirement{
+    label: "Đáp ứng mục tiêu"
+    
+    anomaly_afk{
+        label: "Phát hiện bất động dị thường"
+        class: met_requirement
+    }
+
+    detect_blood_anomaly{
+        label: "Phát hiện các đối tượng vật thể bất thường"
+        class: met_requirement
+    }
+
+    detect_anomaly_group{
+        label: "Phát hiện tụ tập bất thường"
+        class: met_requirement
+    }
+    
+    violent_behavior: {
+        label: "Phát hiện hành vi bạo lực"
+        class: met_requirement
+    }
+
+    self_harm_and_injury: {
+        label: "Phát hiện hành vi tự thương, tự sát"
+        class: met_requirement
+    }
+
+    anomalous_behavior: {
+        label: "Phát hiện hành vi bất thường"
+        class: met_requirement
+    }
+
+    civilian_clothing: {
+        label: "Phát hiện người lạ trong khu vực cấm"
+        class: met_requirement
+    }
+
+    detect_weapons: {
+        label: "Phát hiện vũ khí"
+        class: met_requirement
+    }
+}
+
+
+weapons_detection: {
+    label: "Phát hiện vũ khí"
+    class: gpu_module
+}
+
+civilian_clothing_and_region_lockdown: {
+    label: "Mặc dân sự trong khu vực cấm"
+    class: module
+}
+
+human_activity_recognition :{
+    label: "Nhận diện hành vi nâng cao"
+    class: gpu_module
+}
+input_frame_sequence -> human_detection -> human_bounding_box
+bounding_box_with_type -> human_count -> met_requirement.detect_anomaly_group
+bounding_box_with_type -> human_activity_recognition
+
+input_frame_sequence -> blood_detection -> met_requirement.detect_blood_anomaly
+human_bounding_box -> uniform_classification
+uniform_classification -> bounding_box_with_type
+
+human_activity_recognition -> afk_detection -> met_requirement.anomaly_afk
+human_activity_recognition -> met_requirement.violent_behavior
+human_activity_recognition -> met_requirement.self_harm_and_injury
+human_activity_recognition -> met_requirement.anomalous_behavior
+
+bounding_box_with_type -> weapons_detection -> met_requirement.detect_weapons
+bounding_box_with_type -> civilian_clothing_and_region_lockdown -> met_requirement.civilian_clothing
+
+
+legend{
+    label: "Chú thích"
+    gpu_module: "Tác vụ AI nặng"
+    module: "Tác vụ AI nhẹ"
+    met_requirement: "Đáp ứng mục tiêu"
+    near: bottom-right
+
+
+    gpu_module.class: gpu_module
+    module.class: module
+    met_requirement.class: met_requirement
+}
+
+
+vlm_double_check: {
+    label: "Sử dụng mô hình video lớn để tăng cường độ chính xác của dự đoán"
+    class: gpu_module
+}
+
+notification: {
+    label: "Gửi thông báo"
+    class: module
+    style:{
+        fill: orange
+    }
+    near: bottom-center
+}
+
+met_requirement -> vlm_double_check -> notification

@@ -1,0 +1,163 @@
+cameras{
+    label: "Cameras"
+    icon: https://cdn-icons-png.freepik.com/256/1348/1348093.png
+    style.multiple: true
+}
+
+ai_agent_crew {
+    label: "AI Agent Crew"
+    icon: https://cdn-icons-png.flaticon.com/512/6303/6303303.png
+
+    ai_agent{
+        label: "AI Agent"
+        style.multiple: true
+        face_detection_service{
+            label: "Face Detection Service"
+        }
+
+        body_detection_service{
+            label: "Body Detection Service"
+        }
+
+        object_detection_service{
+            label: "Object Detection Service"
+        }
+
+        grid-rows: 3
+    }
+
+    ai_share_service{
+        label: "AI Share Service"
+
+
+        face_detection_service{
+            label: "Face Detection Service"
+        }
+
+        body_detection_service{
+            label: "Body Detection Service"
+        }
+
+        object_detection_service{
+            label: "Object Detection Service"
+        }
+
+        grid-rows: 4
+        
+        style{
+            stroke-dash: 3
+        }
+        *.style.stroke-dash: 3
+    }
+
+    ai_agent -> ai_share_service: "Handle overflow frames \nand Non-Real-Time detection"
+}
+
+
+central_information{
+    label: "Central Information"
+
+
+    post_gresql_db{
+        label: "PostGresql DB"
+        icon: https://static-00.iconduck.com/assets.00/postgresql-icon-1987x2048-v2fkmdaw.png
+    }
+
+    redis_db{
+        label: "Redis Cache"
+        icon:https://w7.pngwing.com/pngs/711/388/png-transparent-redis-plain-logo-icon.png
+    }
+
+
+    mongo_db_cluster{
+        label: "Mongo DB Cluster"
+
+        mongo_db{
+            label: "Mongo DB Sharding by cells"
+            icon:https://banner2.cleanpng.com/20180823/qyv/kisspng-mongodb-logo-database-nosql-web-development-and-stuff-page-3-1713950393630.webp
+            style.multiple: true
+        }
+    }
+
+    nas_storage{
+        label: "NAS Storage"
+        icon: https://cdn-icons-png.flaticon.com/512/14349/14349851.png
+    }
+}
+
+
+master_services{
+    label: "Master Services"
+
+    master_service{
+        label: "Master Service"
+        icon: https://www.svgrepo.com/show/353657/django-icon.svg
+    }
+
+
+    kafka_consumer{
+        label: "Kafka Consumer"
+        to_mongo_db_sharding{
+            label: "To Mongo DB Sharding"
+        }
+    
+        to_redis_cache{
+            label: "To Redis Cache"
+        }
+        to_nas_storage{
+            label: "To NAS Storage"
+        }
+    }
+
+    mqtt_consumer{
+        label: "MQTT Consumer"
+        to_mongo_db_sharding{
+            label: "To Mongo DB Sharding"
+        }
+    
+        to_redis_cache{
+            label: "To Redis Cache"
+        }
+        to_nas_storage{
+            label: "To NAS Storage"
+        }
+    }
+}
+
+
+business_services{
+    label: "Business Services"
+    style.multiple: true
+}
+
+kafka_stream{
+    label: "Kafka Stream"
+    icon: https://static-00.iconduck.com/assets.00/kafka-icon-2048x935-cvu4503l.png
+}
+
+mqtt_stream{
+    label: "MQTT Stream"
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Mqtt-hor.svg/1280px-Mqtt-hor.svg.png
+}
+
+cameras -> ai_agent_crew.ai_agent: "Get frames by RTSP"
+
+master_services.master_service -> central_information.nas_storage: "Store evidence videos"
+master_services.master_service -> central_information.post_gresql_db: "Metadata DB"
+
+business_services -> master_services.master_service: "Push event and detection data"
+master_services.master_service -> cameras: "Get evidence frames"
+master_services.master_service -> central_information.redis_db: "Caching"
+
+ai_agent_crew.ai_agent -> mqtt_stream: "Push event and AI output data"
+
+mqtt_stream -> master_services.kafka_consumer: "Push event and AI output data"
+
+master_services.mqtt_consumer.to_mongo_db_sharding -> central_information.mongo_db_cluster: "Push event and AI output data"
+master_services.mqtt_consumer.to_redis_cache -> central_information.redis_db: "Push event and AI output data"
+master_services.mqtt_consumer.to_nas_storage -> central_information.nas_storage: "Push event and AI output data"
+master_services.mqtt_consumer.to_nas_storage -> cameras: "Get evidence frames"
+
+master_services.master_service -> mqtt_stream: "Push event for background process"
+ai_agent_crew.ai_share_service -> mqtt_stream: "Push event for background process"
+

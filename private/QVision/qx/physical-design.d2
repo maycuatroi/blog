@@ -1,0 +1,132 @@
+classes: {
+  current_system
+
+  qvision_system: {
+    style: {
+      fill: LightSkyBlue
+    }
+  }
+
+  virtual_component: {
+    style: {
+      stroke-dash: 3
+    }
+  }
+}
+
+internet_boundary: {
+  label: "Mạng nội bộ"
+  style: {
+    fill: White
+  }
+
+  camera: {
+    label: "Camera"
+    icon: https://cdn-icons-png.flaticon.com/128/2642/2642550.png
+    class: current_system
+    style.multiple: true
+  }
+
+  milesetone_manager_server: {
+    label: "2x Máy chủ Milesetone Manager"
+    class: current_system
+  }
+  camera -> milesetone_manager_server
+  camera_server: {
+    label: "14x Máy chủ camera"
+    style.multiple: true
+    class: current_system
+    NVR: {
+      label: "Quản trị camera (NVR)"
+      class: virtual_component
+    }
+    NAS: {
+      label: "Lưu trữ camera (NAS)"
+    }
+
+  NVR -> NAS
+  }
+  kubernetes_cluster: {
+    label: "Cụm máy chủ ảo hoá"
+
+    master_server: {
+      label: "1x Máy chủ quản lý hệ thống ảo hoá"
+      icon: https://static-00.iconduck.com/assets.00/kubernetes-icon-2048x1995-r1q3f8n7.png
+      class: qvision_system
+    }
+    main_system: {
+      label: "Hệ thống chính"
+
+      ai_cluster: {
+        label: "14x Cụm thiết bị trí tuệ nhân tạo tại biên"
+        class: qvision_system
+        style.multiple: true
+      }
+
+      ai_server: {
+        label: "2x Máy chủ trí tuệ nhân tạo"
+        class: qvision_system
+        style.multiple: true
+      }
+
+      application_server: {
+        label: "2x Máy chủ ứng dụng"
+        class: qvision_system
+        style.multiple: true
+      }
+      nas_storage: {
+        label: "1x Máy chủ lưu trữ"
+        class: qvision_system
+      }
+      grid-rows: 2
+    }
+
+    secondary_system: {
+      label: "Hệ thống thứ cấp"
+
+      ai_cluster: {
+        label: "4x Cụm thiết bị trí tuệ nhân tạo tại biên"
+        class: qvision_system
+        style.multiple: true
+      }
+
+      ai_server: {
+        label: "2x Máy chủ trí tuệ nhân tạo"
+        class: qvision_system
+        style.multiple: true
+      }
+
+      application_server: {
+        label: "2x Máy chủ ứng dụng"
+        class: qvision_system
+        style.multiple: true
+      }
+
+      nas_storage: {
+        label: "1x Máy chủ lưu trữ"
+        class: qvision_system
+      }
+      grid-rows: 2
+    }
+    grid-rows: 3
+  }
+
+#   milesetone_manager_server -> kubernetes_cluster.main_system
+#   milesetone_manager_server -> kubernetes_cluster.secondary_system
+  milesetone_manager_server -> camera_server.NVR
+
+  milesetone_manager_server -> qvision_switch :"Chưa chắc chắn" {
+    style: {
+      stroke-dash: 3
+    }
+  }
+  qvision_switch -> kubernetes_cluster.main_system
+  qvision_switch -> kubernetes_cluster.secondary_system
+
+  qvision_switch: {
+    label: "Switch QVision"
+    class: qvision_system
+  }
+
+}
+# add firewall core

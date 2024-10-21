@@ -38,7 +38,7 @@ classes: {
 input_frame_sequence{
     label: "🖼️ Input frame sequence"
     style.multiple: true
-    # near: top-center
+    near: center-left
 }
 
 human_detection{
@@ -73,7 +73,7 @@ uniform_classification{
 }
 
 bounding_box_with_type{
-    label: "Bounding box with type"
+    label: "Human bounding box with uniform type"
     icon: https://cdn-icons-png.flaticon.com/128/6302/6302663.png
     class: output
     style.multiple: true
@@ -196,7 +196,7 @@ bounding_box_with_type -> human_activity_recognition.keypoint_detection
 
 input_frame_sequence -> blood_detection -> met_requirement.detect_blood_anomaly
 human_bounding_box -> uniform_classification
-uniform_classification -> bounding_box_with_type: "Phân loại bounding boxes dựa theo thông tin vị trí camera và uniform"
+uniform_classification -> bounding_box_with_type: "Phân loại bounding boxes dựa theo thông tin vị trí camera và uniform\nMục tiêu phân loại và một số bài toán chỉ cần check cho các học viên (không check cho cán bộ)"
 
 human_activity_recognition.keypoint_detection -> afk_detection -> met_requirement.anomaly_afk
 human_activity_recognition.final_recognition -> met_requirement.violent_behavior
@@ -220,3 +220,40 @@ legend{
     module.class: module
     met_requirement.class: met_requirement
 }
+
+
+vlm_double_check: {
+    label: "Sử dụng VLM để double check nội dung thông báo"
+    # class: gpu_module
+    
+    vlm:{
+        label: "VLM model"
+        icon: https://github.com/NVlabs/VILA/raw/main/demo_images/vila-logo.jpg
+        class: gpu_module
+    }
+    
+    video_summary:{
+        label: "Video summary"
+        class: output
+        icon: https://cdn-icons-png.flaticon.com/128/7311/7311390.png
+    }
+
+    validate_summary:{
+        label: "Validate summary"
+        class: module
+    }
+
+    vlm -> video_summary: "Tóm tắt ~3 giây của video (3-5 frames)"
+    video_summary -> validate_summary: "Xử lý string để double check"
+}
+
+notification: {
+    label: "Gửi thông báo"
+    class: module
+    style:{
+        fill: orange
+    }
+}
+
+met_requirement -> vlm_double_check.vlm
+vlm_double_check.validate_summary -> notification

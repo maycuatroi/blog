@@ -1,0 +1,89 @@
+vlm: {
+  label: "Visual Language Model"
+  note: |md
+    - Paper: https://arxiv.org/pdf/2312.07533
+    - Code: https://github.com/NVlabs/VILA
+  |
+
+  technical_report: {
+    label: "Technical Report"
+
+    input_video: {
+      label: "Input Video"
+    }
+
+    extract_frames: {
+      label: "Extract Frames from Video\n(Sample/Select Key Frames)"
+    }
+
+    tokenize_frames: {
+      label: "Tokenize Each Frame (ViT)"
+    }
+
+    combine_frame_embeddings: {
+      label: "Combine Frame Embeddings\n(e.g., Average, Attention)"
+    }
+
+    tokenize_text: {
+      label: "Tokenize Text (LLM)"
+    }
+
+    combine_embeddings: {
+      label: "Combine Embeddings\n(Projector)"
+    }
+
+    feed_to_llm: {
+      label: "Feed to LLM\n(Auto-regressive)"
+    }
+
+    generate_text_output: {
+      label: "Generate Text Output"
+    }
+
+    input_video -> extract_frames -> tokenize_frames -> combine_frame_embeddings -> tokenize_text -> combine_embeddings -> feed_to_llm -> generate_text_output
+  }
+
+  demo: {
+    direction: down
+    label: "Current Q-Vision Implementation"
+    video_stream: {
+        label: "Video Stream"
+      }
+
+    villa: {
+      direction: down
+      label: "Villa"
+      icon: https://github.com/NVlabs/VILA/raw/main/demo_images/vila-logo.jpg
+     
+      capture_frames: {
+        label: "Capture 4 Frames (2 seconds)"
+      }
+
+      describe_frames: {
+        label: "Describe 2 seconnds of video"
+        note: |md
+          example: "The video shows a person walking in a park. And a dog is running towards the person. The atmosphere is sunny and clear."
+        |
+      }
+      capture_frames -> describe_frames
+    }
+
+    combine_descriptions: {
+      label: "Combine Descriptions using LLM"
+      icon: https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Google_Gemini_logo.svg/344px-Google_Gemini_logo.svg.png
+      note: |md
+        - Current use Gemini
+        - Example promt: `This is description of 2 seconds of video. Please classify the activity in this video. The options are: walking, running, sitting, standing, other.`
+      |
+    }
+
+    output_text: {
+      label: "Activity Recognition Result"
+      note: |md
+        example: walking
+      |
+    }
+    video_stream -> villa.capture_frames
+    villa.describe_frames -> combine_descriptions -> output_text
+  }
+}
