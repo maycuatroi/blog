@@ -1,0 +1,134 @@
+current: {
+  label: "Hiện trạng"
+  direction: down
+  camera: {
+    label: "Camera"
+    icon: https://cdn-icons-png.freepik.com/256/1348/1348093.png
+    style.multiple: true
+  }
+
+  networking: {
+    label: "Hệ thống mạng"
+    switch_poe: {
+      label: "Switch POE"
+      icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
+      style.multiple: true
+    }
+
+    switch_management: {
+      label: "Switch quản lý"
+      icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
+      style.multiple: true
+    }
+
+    core_switch: {
+      label: "Switch cơ sở"
+      icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
+      style.multiple: true
+    }
+
+    switch_24_port: {
+      label: "Switch 24 Port"
+      icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
+      style.multiple: true
+    }
+  }
+
+  monitor_screen: {
+    label: "Màn hình theo dõi"
+    icon: https://cdn-icons-png.flaticon.com/128/9926/9926868.png
+    style.multiple: true
+  }
+
+  camera_server: {
+    label: "Máy chủ quản trị và lưu trữ camera"
+    icon: https://cdn-icons-png.flaticon.com/128/2704/2704286.png
+    style.multiple: true
+  }
+
+  fire_wall: {
+    label: "Firewall"
+    icon: https://cdn-icons-png.flaticon.com/128/8475/8475441.png
+    style.multiple: true
+  }
+
+  camera -> networking.switch_poe
+  networking.switch_poe -> networking.core_switch
+  networking.core_switch -> networking.switch_management
+  networking.core_switch -> networking.switch_24_port
+  networking.core_switch -> camera_server
+  networking.core_switch -> fire_wall
+  camera_server -> monitor_screen
+
+}
+
+q_vision_overview: {
+  label: "Q Vision"
+
+  networking: {
+    server_switch: {
+      label: "Server switch"
+      icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
+      style.multiple: true
+    }
+
+    switch_management: {
+      label: "Switch quản lý"
+      icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
+      style.multiple: true
+    }
+
+    san_switch: {
+      label: "SAN switch"
+      icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
+      style.multiple: true
+    }
+    server_switch -> switch_management
+    grid-rows: 1
+  }
+  virtualization_system: {
+    label: "Hệ thống ảo hóa"
+    icon: https://static-00.iconduck.com/assets.00/kubernetes-icon-2048x1995-r1q3f8n7.png
+    style: {
+      stroke-dash: 3
+    }
+
+    ai_server: {
+      label: "Máy chủ AI lớn"
+      icon: https://cdn-icons-png.flaticon.com/128/2704/2704286.png
+      style.multiple: true
+    }
+
+    ai_cluster: {
+      label: "Cụm AI Box"
+      icon: https://cdn-icons-png.flaticon.com/128/6811/6811450.png
+      style.multiple: true
+    }
+
+    application_server: {
+      label: "Máy chủ ứng dụng"
+      icon: https://cdn-icons-png.flaticon.com/128/2704/2704286.png
+      style.multiple: true
+    }
+
+    storage_server: {
+      label: "Máy chủ lưu trữ"
+      icon: https://cdn-icons-png.flaticon.com/128/2704/2704286.png
+      style.multiple: true
+    }
+
+    ai_cluster <-> ai_server
+    ai_server -> application_server
+
+    ai_cluster -> storage_server
+    ai_server -> storage_server
+    application_server -> storage_server
+
+    # grid-rows: 2
+  }
+
+  networking.server_switch -> virtualization_system
+  networking.san_switch -> virtualization_system
+}
+
+current.networking.core_switch -> q_vision_overview.networking.server_switch
