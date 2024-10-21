@@ -3,53 +3,93 @@ current: {
   direction: down
   camera: {
     label: "Camera"
-    icon: https://cdn-icons-png.freepik.com/256/1348/1348093.png
+    icon: https://icons.terrastruct.com/essentials/012-video%20camera.svg
     style.multiple: true
+    top: 0
+    left: 184
+    width: 773
+    height: 92
+    label.near: bottom-center
   }
 
   networking: {
     label: "Hệ thống mạng"
-    switch_poe: {
-      label: "Switch POE"
-      icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
-      style.multiple: true
-    }
 
     switch_management: {
       label: "Switch quản lý"
       icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
       style.multiple: true
+      label.near: bottom-center
+      top: 0
+      left: 218
+      width: 178
+      height: 91
+    }
+    switch_poe: {
+      label: "Switch POE"
+      icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
+      style.multiple: true
+      label.near: bottom-center
+      top: 0
+      left: 455
     }
 
     core_switch: {
       label: "Switch cơ sở"
       icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
       style.multiple: true
+      label.near: bottom-center
+      top: 142
+      left: 0
+      width: 614
+      height: 92
     }
 
     switch_24_port: {
       label: "Switch 24 Port"
       icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
       style.multiple: true
+      label.near: bottom-center
+      top: 0
+      left: 0
     }
+    top: 126
+    left: 184
+    width: 774
+    height: 478
   }
 
   monitor_screen: {
     label: "Màn hình theo dõi"
     icon: https://cdn-icons-png.flaticon.com/128/9926/9926868.png
     style.multiple: true
+    label.near: bottom-center
+    top: 798
+    left: 184
+    width: 773
+    height: 92
   }
 
   camera_server: {
     label: "Máy chủ quản trị và lưu trữ camera"
     icon: https://cdn-icons-png.flaticon.com/128/2704/2704286.png
     style.multiple: true
+    label.near: bottom-center
+    top: 646
+    left: 184
+    width: 773
+    height: 92
   }
 
   fire_wall: {
     label: "Firewall"
     icon: https://cdn-icons-png.flaticon.com/128/8475/8475441.png
     style.multiple: true
+    label.near: bottom-center
+    top: 0
+    left: 0
+    width: 129
+    height: 891
   }
 
   camera -> networking.switch_poe
@@ -59,13 +99,15 @@ current: {
   networking.core_switch -> camera_server
   networking.core_switch -> fire_wall
   camera_server -> monitor_screen
-
+  top: 0
+  left: 0
 }
 
 q_vision_overview: {
   label: "Q Vision"
 
   networking: {
+    label: "Hệ thống mạng"
     server_switch: {
       label: "Server switch"
       icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
@@ -85,9 +127,12 @@ q_vision_overview: {
     }
     server_switch -> switch_management
     grid-rows: 1
+    width: 743
+    height: 284
   }
   virtualization_system: {
     label: "Hệ thống ảo hóa"
+    icon.near: top-left
     icon: https://static-00.iconduck.com/assets.00/kubernetes-icon-2048x1995-r1q3f8n7.png
     style: {
       stroke-dash: 3
@@ -97,24 +142,38 @@ q_vision_overview: {
       label: "Máy chủ AI lớn"
       icon: https://cdn-icons-png.flaticon.com/128/2704/2704286.png
       style.multiple: true
+      label.near: bottom-center
+      top: 0
+      left: 330
     }
 
     ai_cluster: {
       label: "Cụm AI Box"
       icon: https://cdn-icons-png.flaticon.com/128/6811/6811450.png
       style.multiple: true
+      label.near: bottom-center
+      top: 0
+      left: 0
+      width: 187
+      height: 91
     }
 
     application_server: {
       label: "Máy chủ ứng dụng"
       icon: https://cdn-icons-png.flaticon.com/128/2704/2704286.png
       style.multiple: true
+      label.near: bottom-center
+      top: 186
+      left: 330
     }
 
     storage_server: {
       label: "Máy chủ lưu trữ"
       icon: https://cdn-icons-png.flaticon.com/128/2704/2704286.png
       style.multiple: true
+      label.near: bottom-center
+      top: 186
+      left: 0
     }
 
     ai_cluster <-> ai_server
@@ -124,11 +183,31 @@ q_vision_overview: {
     ai_server -> storage_server
     application_server -> storage_server
 
-    # grid-rows: 2
+    top: 406
+    left: 0
+    width: 743
+    height: 468
+    label.near: top-center
+  }
+
+  monitor_screen: {
+    label: "Màn hình theo dõi"
+    icon: https://cdn-icons-png.flaticon.com/128/9926/9926868.png
+    style.multiple: true
+    label.near: bottom-center
+    top: 406
+    left: 780
+    width: 205
+    height: 468
   }
 
   networking.server_switch -> virtualization_system
   networking.san_switch -> virtualization_system
+  top: 0
+  left: 1205
+  width: 935
+  height: 1038
+  networking.server_switch -> monitor_screen
 }
 
 current.networking.core_switch -> q_vision_overview.networking.server_switch
