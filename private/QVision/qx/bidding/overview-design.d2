@@ -1,5 +1,5 @@
 current: {
-  label: "Hiện trạng"
+  label: "Current State"
   direction: down
   camera: {
     label: "Camera"
@@ -13,10 +13,10 @@ current: {
   }
 
   networking: {
-    label: "Hệ thống mạng"
+    label: "Network System"
 
     switch_management: {
-      label: "Switch quản lý"
+      label: "Management Switch"
       icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
       style.multiple: true
       label.near: bottom-center
@@ -26,7 +26,7 @@ current: {
       height: 102
     }
     switch_poe: {
-      label: "Switch POE"
+      label: "POE Switch"
       icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
       style.multiple: true
       label.near: bottom-center
@@ -35,7 +35,7 @@ current: {
     }
 
     core_switch: {
-      label: "Switch cơ sở"
+      label: "Core Switch"
       icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
       style.multiple: true
       label.near: bottom-center
@@ -46,7 +46,7 @@ current: {
     }
 
     switch_24_port: {
-      label: "Switch 24 Port"
+      label: "24 Port Switch"
       icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
       style.multiple: true
       label.near: bottom-center
@@ -60,7 +60,7 @@ current: {
   }
 
   monitor_screen: {
-    label: "Màn hình theo dõi"
+    label: "Monitoring Screen"
     icon: https://cdn-icons-png.flaticon.com/128/9926/9926868.png
     style.multiple: true
     label.near: bottom-center
@@ -71,7 +71,7 @@ current: {
   }
 
   camera_server: {
-    label: "Máy chủ quản trị và lưu trữ camera"
+    label: "Camera Management and Storage Server"
     icon: https://cdn-icons-png.flaticon.com/128/2704/2704286.png
     style.multiple: true
     label.near: bottom-center
@@ -106,12 +106,12 @@ current: {
 }
 
 q_vision_overview: {
-  label: QVision
+  label: "akaCam"
 
   networking: {
-    label: "Hệ thống mạng"
+    label: "Network System"
     server_switch: {
-      label: "Server switch"
+      label: "Server Switch"
       icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
       style.multiple: true
       top: 351
@@ -119,7 +119,7 @@ q_vision_overview: {
     }
 
     switch_management: {
-      label: "Switch quản lý"
+      label: "Management Switch"
       icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
       style.multiple: true
       top: 701
@@ -129,7 +129,7 @@ q_vision_overview: {
     }
 
     san_switch: {
-      label: "SAN switch"
+      label: "SAN Switch"
       icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
       style.multiple: true
       top: 0
@@ -143,7 +143,7 @@ q_vision_overview: {
     left: 0
   }
   virtualization_system: {
-    label: "Hệ thống ảo hóa"
+    label: "Virtualization System"
     icon.near: top-left
     icon: https://static-00.iconduck.com/assets.00/kubernetes-icon-2048x1995-r1q3f8n7.png
     style: {
@@ -151,7 +151,7 @@ q_vision_overview: {
     }
 
     ai_server: {
-      label: "Máy chủ AI lớn"
+      label: "Large AI Server"
       icon: https://cdn-icons-png.flaticon.com/128/2704/2704286.png
       style.multiple: true
       label.near: bottom-center
@@ -162,7 +162,7 @@ q_vision_overview: {
     }
 
     ai_cluster: {
-      label: "Cụm AI Box"
+      label: "akaCam Box\nCluster"
       icon: https://cdn-icons-png.flaticon.com/128/6811/6811450.png
       style.multiple: true
       label.near: bottom-center
@@ -171,7 +171,7 @@ q_vision_overview: {
     }
 
     application_server: {
-      label: "Máy chủ ứng dụng"
+      label: "Application Server"
       icon: https://cdn-icons-png.flaticon.com/128/2704/2704286.png
       style.multiple: true
       label.near: bottom-center
@@ -182,7 +182,7 @@ q_vision_overview: {
     }
 
     storage_server: {
-      label: "Máy chủ lưu trữ"
+      label: "Storage Server"
       icon: https://cdn-icons-png.flaticon.com/128/2704/2704286.png
       style.multiple: true
       label.near: bottom-center
@@ -192,23 +192,21 @@ q_vision_overview: {
       height: 102
     }
 
-    ai_cluster <-> ai_server: Xử lý tác vụ AI siêu nặng
+    ai_cluster <-> ai_server: "Process heavy AI tasks"
     ai_cluster -> application_server
-
     ai_cluster -> storage_server
-
     application_server -> storage_server
+    ai_server -> storage_server: "Retrieve AI model information"
 
     top: 0
     left: 419
     width: 673
     height: 739
     label.near: top-center
-    ai_server -> storage_server: Lấy thông tin AI model
   }
 
   monitor_screen: {
-    label: "Màn hình theo dõi"
+    label: "Monitoring Screen"
     icon: https://cdn-icons-png.flaticon.com/128/9926/9926868.png
     style.multiple: false
     label.near: bottom-center

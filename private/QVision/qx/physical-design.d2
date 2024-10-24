@@ -1,21 +1,15 @@
 classes: {
   current_system
 
-  qvision_system: {
-    style: {
-      fill: LightSkyBlue
-    }
-  }
-
-  virtual_component: {
-    style: {
-      stroke-dash: 3
-    }
+  milesetone_manager_server: {
+    label: "2x Milestone Manager Servers"
+    icon: https://ryalex.com.au/wp-content/uploads/2022/02/Website-Product-Images.png
+    label.near: bottom-center
   }
 }
 
 internet_boundary: {
-  label: "Mạng nội bộ"
+  label: "Internal Network"
   style: {
     fill: White
   }
@@ -25,108 +19,113 @@ internet_boundary: {
     icon: https://cdn-icons-png.flaticon.com/128/2642/2642550.png
     class: current_system
     style.multiple: true
+    top: 0
+    left: 320
   }
+  current_system: {
+    milesetone_manager_server.class: milesetone_manager_server
 
-  milesetone_manager_server: {
-    label: "2x Máy chủ Milesetone Manager"
-    class: current_system
-  }
-  camera -> milesetone_manager_server
-  camera_server: {
-    label: "14x Máy chủ camera"
-    style.multiple: true
-    class: current_system
-    NVR: {
-      label: "Quản trị camera (NVR)"
-      class: virtual_component
-    }
-    NAS: {
-      label: "Lưu trữ camera (NAS)"
-    }
+    camera_server: {
+      label: "14x Camera Servers"
+      style.multiple: true
+      class: current_system
+      NVR: {
+        label: "Camera Management (NVR)"
+        class: virtual_component
+      }
+      NAS: {
+        label: "Camera Storage (NAS)"
+      }
 
-  NVR -> NAS
+      NVR -> NAS
+    }
+    top: 123
+    left: 0
   }
   kubernetes_cluster: {
-    label: "Cụm máy chủ ảo hoá"
+    label: "Virtualization Server Cluster"
 
     master_server: {
-      label: "1x Máy chủ quản lý hệ thống ảo hoá"
+      label: "1x Virtualization Management Server"
       icon: https://static-00.iconduck.com/assets.00/kubernetes-icon-2048x1995-r1q3f8n7.png
-      class: qvision_system
+      class: akaCam_system
     }
     main_system: {
-      label: "Hệ thống chính"
+      label: "Main System"
 
       ai_cluster: {
-        label: "14x Cụm thiết bị trí tuệ nhân tạo tại biên"
-        class: qvision_system
+        label: "14x Edge AI Device Cluster"
+        class: akaCam_system
         style.multiple: true
       }
 
       ai_server: {
-        label: "2x Máy chủ trí tuệ nhân tạo"
-        class: qvision_system
+        label: "2x AI Servers"
+        class: akaCam_system
         style.multiple: true
       }
 
       application_server: {
-        label: "2x Máy chủ ứng dụng"
-        class: qvision_system
+        label: "2x Application Servers"
+        class: akaCam_system
         style.multiple: true
       }
       nas_storage: {
-        label: "1x Máy chủ lưu trữ"
-        class: qvision_system
+        label: "1x Storage Server"
+        class: akaCam_system
       }
       grid-rows: 2
     }
 
     secondary_system: {
-      label: "Hệ thống thứ cấp"
+      label: "Secondary System"
 
       ai_cluster: {
-        label: "4x Cụm thiết bị trí tuệ nhân tạo tại biên"
-        class: qvision_system
+        label: "4x Edge AI Device Cluster"
+        class: akaCam_system
         style.multiple: true
       }
 
       ai_server: {
-        label: "2x Máy chủ trí tuệ nhân tạo"
-        class: qvision_system
+        label: "2x AI Servers"
+        class: akaCam_system
         style.multiple: true
       }
 
       application_server: {
-        label: "2x Máy chủ ứng dụng"
-        class: qvision_system
+        label: "2x Application Servers"
+        class: akaCam_system
         style.multiple: true
       }
 
       nas_storage: {
-        label: "1x Máy chủ lưu trữ"
-        class: qvision_system
+        label: "1x Storage Server"
+        class: akaCam_system
       }
       grid-rows: 2
     }
     grid-rows: 3
+    top: 901
+    left: 0
+    width: 823
+    height: 915
   }
 
-#   milesetone_manager_server -> kubernetes_cluster.main_system
-#   milesetone_manager_server -> kubernetes_cluster.secondary_system
-  milesetone_manager_server -> camera_server.NVR
+  current_system.milesetone_manager_server -> current_system.camera_server.NVR
+  camera -> current_system.milesetone_manager_server
+  current_system.milesetone_manager_server -> akaCam_switch
+  akaCam_switch -> kubernetes_cluster
 
-  milesetone_manager_server -> qvision_switch :"Chưa chắc chắn" {
-    style: {
-      stroke-dash: 3
-    }
+  akaCam_switch: {
+    label: "akaCam Switchs"
+    class: akaCam_system
+    style.multiple: true
+    icon: https://cdn-icons-png.flaticon.com/128/2729/2729174.png
+    label.near: bottom-center
+    top: 725
+    left: 0
+    width: 823
+    height: 92
   }
-  qvision_switch -> kubernetes_cluster.main_system
-  qvision_switch -> kubernetes_cluster.secondary_system
-
-  qvision_switch: {
-    label: "Switch QVision"
-    class: qvision_system
-  }
-
 }
 # add firewall core

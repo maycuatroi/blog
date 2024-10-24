@@ -1,260 +1,377 @@
 classes: {
-    sql_lite: {
-      label: "SQL Lite"
-      icon: https://static-00.iconduck.com/assets.00/sqlite-icon-2048x909-7nkrc3bm.png
-      label.near: bottom-center
-    }
-  
-    mysql: {
-      label: "MySQL"
-      icon: https://cdn-icons-png.flaticon.com/512/5968/5968313.png
-      label.near: bottom-center
-    }
-  
-    camera: {
-      label: "Camera"
-      icon: https://icons.terrastruct.com/essentials/012-video%20camera.svg
-      label.near: bottom-center
-    }
-  
-    redis: {
-      label: "Redis"
-      icon: https://cdn4.iconfinder.com/data/icons/redis-2/1451/Untitled-2-512.png
-      label.near: bottom-center
-    }
-  
-    minio: {
-      label: "Minio"
-      icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz13CCo_MMe1jMVfNWOb4xt5uW8lzYgVfehQ&s
-      label.near: bottom-center
-    }
-  
-    kafka: {
-      label: "Kafka"
-      icon: https://www.svgrepo.com/show/353951/kafka-icon.svg
-      label.near: bottom-center
-    }
-  
-    kibana: {
-      label: "Kibana"
-      icon: https://static-00.iconduck.com/assets.00/kibana-icon-1537x2048-476gnmfc.png
-      label.near: bottom-center
-    }
-    elasticsearch: {
-      label: "Elasticsearch"
-      icon: https://static-00.iconduck.com/assets.00/elasticsearch-icon-1839x2048-g9zblqim.png
-      label.near: bottom-center
-    }
+  sql_lite: {
+    label: "SQL Lite"
+    icon: https://static-00.iconduck.com/assets.00/sqlite-icon-2048x909-7nkrc3bm.png
+    label.near: bottom-center
   }
-  
+  grafana: {
+    label: "Grafana"
+    icon: https://securityonline.info/wp-content/uploads/2024/09/Grafana_logo.svg_.png
+    label.near: bottom-center
+  }
+
+  prometheus: {
+    label: "Prometheus"
+    icon: https://static-00.iconduck.com/assets.00/prometheus-icon-511x512-1vmxbcxr.png
+    label.near: bottom-center
+  }
+
+  mysql: {
+    label: "MySQL"
+    icon: https://cdn-icons-png.flaticon.com/512/5968/5968313.png
+    label.near: bottom-center
+  }
+
   camera: {
-    class: camera
-    style.multiple: true
-    near: center-left
+    label: "Camera"
+    icon: https://icons.terrastruct.com/essentials/012-video%20camera.svg
+    label.near: bottom-center
+    style: {
+      stroke-width: 0
+    }
   }
-  
-  ai_box: {
-    label: "AI Box"
+
+  redis: {
+    label: "Redis"
+    icon: https://cdn4.iconfinder.com/data/icons/redis-2/1451/Untitled-2-512.png
+    label.near: bottom-center
+  }
+
+  minio: {
+    label: "Minio"
+    icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz13CCo_MMe1jMVfNWOb4xt5uW8lzYgVfehQ&s
+    label.near: bottom-center
+  }
+
+  kafka: {
+    label: "Kafka"
+    icon: https://www.svgrepo.com/show/353951/kafka-icon.svg
+    label.near: bottom-center
+  }
+
+  kibana: {
+    label: "Kibana"
+    icon: https://static-00.iconduck.com/assets.00/kibana-icon-1537x2048-476gnmfc.png
+    label.near: bottom-center
+  }
+  elasticsearch: {
+    label: "Elasticsearch"
+    icon: https://static-00.iconduck.com/assets.00/elasticsearch-icon-1839x2048-g9zblqim.png
+    label.near: bottom-center
+  }
+}
+
+camera: {
+  label: "Camera"
+  cam1.class: camera
+  cam2.class: camera
+  cam3.class: camera
+  cam4.class: camera
+  near: center-left
+  top: 418
+  left: 0
+  grid-rows: 4
+}
+milesetone_manager_server: {
+  label: "Milesetone Manager Server"
+  icon: https://ryalex.com.au/wp-content/uploads/2022/02/Website-Product-Images.png
+  top: 0
+  left: 678
+  width: 159
+  height: 1242
+  label.near: outside-bottom-center
+  style.font-size: 28
+}
+
+ai_box: {
+  label: "Multiple akaCam Boxes"
+  style.multiple: true
+
+  ai_services: {
+    label: "AI Tasks at the Edge (Process near real-time)"
     style.multiple: true
-  
-    ai_services: {
-      label: "Tác vụ AI tại biên (Process near real-time)"
+    top: 0
+    left: 0
+    width: 434
+    height: 246
+  }
+
+  sql_lite: {
+    class: sql_lite
+    top: 406
+    left: 258
+    width: 176
+    height: 135
+  }
+
+  mini_portal: {
+    label: "Mini Portal"
+    top: 406
+    left: 0
+    width: 175
+    height: 135
+  }
+
+  communication_service: {
+    label: "Communication\nService"
+    top: 0
+    left: 542
+    width: 160
+    height: 380
+    label.near: center-center
+  }
+
+  health_check: {
+    label: "Health Check"
+    top: 406
+    left: 542
+    width: 160
+    height: 135
+  }
+
+  mini_portal -> sql_lite
+  mini_portal -> ai_services
+  ai_services -> sql_lite
+  ai_services -> communication_service
+  communication_service -> sql_lite: "Update config"
+  top: 2
+  left: 863
+  width: 852
+  height: 787
+}
+
+platform: {
+  label: "akaCam Platform"
+
+  kafka: {
+    class: kafka
+    top: 265
+    left: 0
+    width: 168
+    height: 110
+  }
+
+  redis: {
+    class: redis
+    top: 0
+    left: 0
+    width: 168
+    height: 110
+  }
+
+  minio: {
+    class: minio
+    top: 529
+    left: 0
+    width: 168
+    height: 110
+  }
+
+  virtualization_system: {
+    label: "Virtualization System"
+    icon: https://static-00.iconduck.com/assets.00/kubernetes-icon-2048x1995-r1q3f8n7.png
+    icon.near: top-left
+    consumer_services: {
+      label: "Consumer Services"
       style.multiple: true
-      top: 0
-      left: 0
-      width: 379
+      top: 200
+      left: 5
+      width: 271
       height: 66
     }
-  
-    sql_lite: {
-      class: sql_lite
-      top: 135
-      left: 258
-      width: 121
-      height: 135
-    }
-  
-    mini_portal: {
-      label: "Mini Portal"
-      top: 135
-      left: 0
-      width: 115
-      height: 135
-    }
-  
-    communication_service: {
-      label: "Communication\nService"
+    web_application: {
+      label: "Web Application"
+      style.multiple: true
+      width: 271
+      height: 120
       top: 0
-      left: 538
-      width: 160
-      height: 270
+      left: 0
+    }
+
+    ai_services: {
+      label: "Heavy AI System"
+      style.multiple: true
+      top: 329
+      left: 0
+      width: 271
+      height: 66
+    }
+
+    health_check_service: {
+      label: "Health check service"
+      style.multiple: true
       label.near: center-center
+      width: 271
+      height: 92
     }
-  
-    mini_portal -> sql_lite
-    mini_portal -> ai_services
-    ai_services -> sql_lite
-    ai_services -> communication_service
-    communication_service -> sql_lite: "Cập nhật config"
+
     top: 0
-    left: 150
-    width: 852
-    height: 662
+    left: 230
+    width: 361
+    height: 481
   }
-  
-  platform: {
-    label: QVision Platform
-  
-    kafka: {
-      class: kafka
-      top: 183
-      left: 0
-      width: 168
-      height: 92
-    }
-  
-    redis: {
-      class: redis
-      top: 0
-      left: 0
-      width: 168
-      height: 92
-    }
-  
-    minio: {
-      class: minio
-      top: 389
-      left: 0
-      width: 168
-      height: 92
-    }
-  
-    virtualization_system: {
-      label: "Hệ thống ảo hóa"
-      consumer_services: {
-        label: "Consumer Services"
-        style.multiple: true
-        top: 200
-        left: 5
-        width: 271
-        height: 66
-      }
-      web_application: {
-        label: "Web Application"
-        style.multiple: true
-        width: 271
-        height: 120
-        top: 0
-        left: 0
-      }
-  
-      ai_services: {
-        label: "Hệ thống AI nặng"
-        style.multiple: true
-        top: 329
-        left: 0
-        width: 271
-        height: 66
-      }
-      top: 0
-      left: 230
-      width: 361
-      height: 481
-    }
-  
-    mysql: {
-      class: mysql
-      top: 0
-      left: 666
-      width: 126
-      height: 109
-    }
-  
-    elasticsearch: {
-      class: elasticsearch
-      top: 213
-      left: 666
-      width: 126
-      height: 89
-    }
-  
-    kibana: {
-      class: kibana
-      top: 389
-      left: 666
-      width: 126
-      height: 126
-    }
-  
-    virtualization_system.web_application -> minio
-    virtualization_system.web_application <-> kafka
-    virtualization_system.web_application <-> redis
-    virtualization_system.web_application -> mysql
-    virtualization_system.web_application -> elasticsearch
-  
-    virtualization_system.consumer_services <-> kafka
-    virtualization_system.consumer_services -> mysql
-    virtualization_system.consumer_services -> elasticsearch
-    kibana -> elasticsearch
+
+  mysql: {
+    class: mysql
     top: 0
-    left: 1218
-    width: 940
-    height: 663
+    left: 709
+    width: 330
+    height: 110
   }
-  
+
+  elasticsearch: {
+    class: elasticsearch
+    top: 195
+    left: 709
+    width: 330
+    height: 110
+  }
+
+  kibana: {
+    class: kibana
+    top: 387
+    left: 709
+    width: 330
+    height: 110
+  }
+  grafana.class: grafana
+  prometheus.class: prometheus
+
+  virtualization_system.web_application -> minio
+  virtualization_system.web_application <-> kafka
+  virtualization_system.web_application <-> redis
+  virtualization_system.web_application -> mysql
+  virtualization_system.web_application -> elasticsearch
+  virtualization_system.health_check_service -> grafana
+  virtualization_system.health_check_service -> prometheus
+
+  virtualization_system.consumer_services <-> kafka
+  virtualization_system.consumer_services -> mysql
+  virtualization_system.consumer_services -> elasticsearch
+  kibana -> elasticsearch
+  top: 2
+  left: 1931
+  width: 940
+  height: 663
+  grafana.top: 547
+  grafana.left: 709
+  prometheus.top: 547
+  prometheus.left: 907
+}
+
+desktop_app: {
+  label: "Desktop App"
+  style.multiple: true
+
   desktop_app: {
     label: "Desktop App"
-    style.multiple: true
-  
-    desktop_app: {
-      label: "Desktop App"
-      top: 0
-      left: 0
-      width: 759
-      height: 92
+    top: 0
+    left: 0
+    width: 1883
+    height: 92
+  }
+  sql_lite: {
+    class: sql_lite
+    top: 131
+    left: 0
+    width: 1883
+    height: 92
+  }
+
+  desktop_app -> sql_lite
+  top: 871
+  left: 863
+  width: 2283
+  height: 372
+}
+
+ai_box.communication_service <-> platform.kafka
+
+milesetone_manager_server -> ai_box.ai_services: {
+  style.stroke: orange
+}
+
+milesetone_manager_server -> desktop_app.desktop_app: {
+  style.stroke: orange
+}
+
+camera -> milesetone_manager_server
+
+ai_box.communication_service -> platform.virtualization_system.ai_services: low latency communication {style.font-size: 24}
+desktop_app.desktop_app <-> platform.kafka
+
+desktop_app.desktop_app -> platform.minio
+
+ai_box.communication_service -> platform.minio
+
+(** <-> platform.redis)[*]: {
+  style.stroke: red
+  style.animated: false
+}
+
+(** <-> platform.kafka)[*]: {
+  style.stroke: blue
+}
+
+(camera -> **)[*]: {
+  style.stroke: orange
+}
+
+(** -> platform.minio)[*]: {
+  style.stroke: green
+}
+
+legend: {
+  direction: right
+  label: "Legend"
+
+  x1 -> y1: redis
+  x2 -> y2: kafka
+  x3 -> y3: minio(http)
+  x4 -> y4: http request
+  x5 -> y5: RTSP
+
+  (x1 -> y1)[0].style.stroke: red
+  (x2 -> y2)[0].style.stroke: blue
+  (x3 -> y3)[0].style.stroke: green
+  (x4 -> y4)[0].style.stroke: black
+  (x5 -> y5)[0].style.stroke: orange
+
+  (x* -> y*)[*].style: {
+    font-size: 20
+    font-color: black
+  }
+  x*: {
+    style: {
+      opacity: 0
     }
-    sql_lite: {
-      class: sql_lite
-      top: 0
-      left: 901
-      width: 962
-      height: 92
-    }
-  
-    desktop_app -> sql_lite
-    top: 752
-    left: 150
-    width: 2011
-    height: 250
   }
-  
-  ai_box.communication_service <-> platform.kafka
-  
-  camera -> ai_box.ai_services: "Đọc bằng RTSP"
-  
-  camera -> desktop_app.desktop_app: "Đọc bằng RTSP"
-  
-  ai_box.communication_service <-> platform.redis
-  desktop_app.desktop_app <-> platform.redis
-  
-  desktop_app.desktop_app -> platform.minio
-  
-  ai_box.communication_service -> platform.minio
-  
-  (** <-> platform.redis)[*]: {
-    style.stroke: red
-    style.animated: false
-  }
-  
-  (** <-> platform.kafka)[*]: {
-    style.stroke: blue
-  }
-  
-  (camera -> **)[*]: {
-    style.stroke: orange
-  }
-  
-  (** -> platform.minio)[*]: {
-    style.stroke: green
-  }
-  
+  y*.style.opacity: 0
+  # grid-rows: 1
+  x2.top: 0
+  x2.left: 557
+  y2.top: 0
+  y2.left: 815
+  x3.top: 0
+  x3.left: 1061
+  y3.top: 0
+  y3.left: 1319
+  x4.top: 0
+  x4.left: 1660
+  y4.top: 0
+  y4.left: 1902
+  x5.top: 0
+  x5.left: 2101
+  y5.top: 0
+  y5.left: 2308
+  y1.top: 0
+  y1.left: 209
+  x1.top: 0
+  x1.left: 0
+  top: 1295
+  left: 678
+  width: 2468
+  height: 190
+}
+ai_box.health_check -> platform.virtualization_system.health_check_service
+**.**.style.font-size: 20
